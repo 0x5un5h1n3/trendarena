@@ -1,0 +1,20 @@
+package com.ox5un5h1n3.web.trendarena;
+
+import org.apache.catalina.Context;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.startup.Tomcat;
+
+import java.io.File;
+
+public class Main {
+    public static void main(String[] args) throws LifecycleException {
+        Tomcat tomcat = new Tomcat();
+        tomcat.setPort(8080);
+        tomcat.getConnector();
+
+        Context context = tomcat.addWebapp("/trendarena", new File("./src/main/webapp").getAbsolutePath());
+        context.setAllowCasualMultipartParsing(true);
+
+        tomcat.start();
+    }
+}

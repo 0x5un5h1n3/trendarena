@@ -4,6 +4,22 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+<!--    <listener>-->
+<!--        <listener-class>com.ox5un5h1n3.web.trendarena.listener.ContextListener</listener-class>-->
+<!--    </listener>-->
+
+    <!-- jsp-inheritance-prefix, jsp-inheritance-suffix can be omitted.-->
+
+    <context-param>
+        <param-name>jsp-inheritance-prefix</param-name>
+        <param-value>/WEB-INF/views/layout/</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jsp-inheritance-suffix</param-name>
+        <param-value>.jsp</param-value>
+    </context-param>
+
     <filter>
         <filter-name>JerseyServlet</filter-name>
         <filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>

@@ -8,11 +8,9 @@ import org.glassfish.jersey.server.mvc.Viewable;
 
 
 @Path("/")
-//@Singleton
 public class HomeController {
 
     @GET
-//    public Viewable index(){
     public Viewable index(@QueryParam("name") @NotNull String name){
         return new Viewable("/frontend/home");
     }

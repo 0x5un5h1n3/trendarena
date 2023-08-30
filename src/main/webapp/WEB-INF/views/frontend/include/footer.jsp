@@ -110,14 +110,14 @@
 
                 <div class="col-xxl-3 col-xl-4 col-sm-6">
                     <div class="footer-title">
-                        <h4 class="text-white">Store infomation</h4>
+                        <h4 class="text-white">Store information</h4>
                     </div>
                     <ul class="footer-address footer-contact">
                         <li>
                             <a href="javascript:void(0)" class="light-text">
                                 <div class="inform-box flex-start-box">
                                     <i data-feather="map-pin"></i>
-                                    <p>TrendArena Demo Store, Planet Earth 345 - 659</p>
+                                    <p>TrendArena Store, Planet Earth 345 - 659</p>
                                 </div>
                             </a>
                         </li>
@@ -135,7 +135,7 @@
                             <a href="javascript:void(0)" class="light-text">
                                 <div class="inform-box">
                                     <i data-feather="mail"></i>
-                                    <p>Email Us: Support@Fastkart.com</p>
+                                    <p>Email Us: Support@TrendArena.com</p>
                                 </div>
                             </a>
                         </li>

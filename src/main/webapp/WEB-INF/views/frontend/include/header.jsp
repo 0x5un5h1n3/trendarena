@@ -155,8 +155,8 @@
                                     <i class="fa-solid fa-bars"></i>
                                 </span>
                         </button>
-                        <a href="index.html" class="web-logo nav-logo">
-                            <img src="${BASE_URL}assets/images/logo/6.png" class="img-fluid blur-up lazyload" alt="">
+                        <a href="${BASE_URL}" class="web-logo nav-logo">
+                            <img src="${BASE_URL}assets/images/logo/logo.png" class="img-fluid blur-up lazyload" alt="">
                         </a>
 
                         <div class="header-nav-middle">
@@ -173,39 +173,39 @@
                                                 <a class="nav-link dropdown-toggle ps-xl-2 ps-0"
                                                    href="javascript:void(0)" data-bs-toggle="dropdown">Home</a>
 
-                                                <div class="dropdown-menu dropdown-menu-2 dropdown-image">
-                                                    <div class="dropdown-column">
-                                                        <a class="dropdown-item" href="index.html">
-                                                            <img src="${BASE_URL}assets/images/theme/1.jpg"
-                                                                 class="img-fluid" alt="">
-                                                            <span>Kartshop</span>
-                                                        </a>
+<%--                                                <div class="dropdown-menu dropdown-menu-2 dropdown-image">--%>
+<%--                                                    <div class="dropdown-column">--%>
+<%--                                                        <a class="dropdown-item" href="index.html">--%>
+<%--                                                            <img src="${BASE_URL}assets/images/theme/1.jpg"--%>
+<%--                                                                 class="img-fluid" alt="">--%>
+<%--                                                            <span>TrendArena</span>--%>
+<%--                                                        </a>--%>
 
-                                                        <a class="dropdown-item" href="index-2.html">
-                                                            <img src="${BASE_URL}assets/images/theme/2.jpg"
-                                                                 class="img-fluid" alt="">
-                                                            <span>Sweetshop</span>
-                                                        </a>
+<%--                                                        <a class="dropdown-item" href="index-2.html">--%>
+<%--                                                            <img src="${BASE_URL}assets/images/theme/2.jpg"--%>
+<%--                                                                 class="img-fluid" alt="">--%>
+<%--                                                            <span>Sweetshop</span>--%>
+<%--                                                        </a>--%>
 
-                                                        <a class="dropdown-item" href="index-3.html">
-                                                            <img src="${BASE_URL}assets/images/theme/3.jpg"
-                                                                 class="img-fluid" alt="">
-                                                            <span>Organic</span>
-                                                        </a>
+<%--                                                        <a class="dropdown-item" href="index-3.html">--%>
+<%--                                                            <img src="${BASE_URL}assets/images/theme/3.jpg"--%>
+<%--                                                                 class="img-fluid" alt="">--%>
+<%--                                                            <span>Organic</span>--%>
+<%--                                                        </a>--%>
 
-                                                        <a class="dropdown-item" href="index-4.html">
-                                                            <img src="${BASE_URL}assets/images/theme/4.jpg"
-                                                                 class="img-fluid" alt="">
-                                                            <span>Supershop</span>
-                                                        </a>
+<%--                                                        <a class="dropdown-item" href="index-4.html">--%>
+<%--                                                            <img src="${BASE_URL}assets/images/theme/4.jpg"--%>
+<%--                                                                 class="img-fluid" alt="">--%>
+<%--                                                            <span>Supershop</span>--%>
+<%--                                                        </a>--%>
 
-                                                        <a class="dropdown-item" href="index-5.html">
-                                                            <img src="${BASE_URL}assets/images/theme/5.jpg"
-                                                                 class="img-fluid" alt="">
-                                                            <span>Slicktech</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
+<%--                                                        <a class="dropdown-item" href="index-5.html">--%>
+<%--                                                            <img src="${BASE_URL}assets/images/theme/5.jpg"--%>
+<%--                                                                 class="img-fluid" alt="">--%>
+<%--                                                            <span>Slicktech</span>--%>
+<%--                                                        </a>--%>
+<%--                                                    </div>--%>
+<%--                                                </div>--%>
                                             </li>
 
                                             <li class="nav-item dropdown">

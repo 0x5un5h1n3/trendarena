@@ -6,16 +6,23 @@ import com.ox5un5h1n3.web.trendarena.service.UserService;
 import com.ox5un5h1n3.web.trendarena.util.Encryption;
 import com.ox5un5h1n3.web.trendarena.util.HibernateUtil;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.glassfish.jersey.server.mvc.Viewable;
 import org.hibernate.Session;
 
 import java.util.UUID;
 
 @Path("/register")
 public class RegisterController {
+
+    @GET
+    public Viewable index(){
+        return new Viewable("/frontend/auth/register");
+    }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response register(RegisterDTO registerDTO){

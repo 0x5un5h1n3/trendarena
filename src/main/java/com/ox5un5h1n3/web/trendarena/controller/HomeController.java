@@ -11,7 +11,10 @@ import org.glassfish.jersey.server.mvc.Viewable;
 public class HomeController {
 
     @GET
-    public Viewable index(@QueryParam("name") @NotNull String name){
+//    public Viewable index(@QueryParam("name") @NotNull String name){
+//        return new Viewable("/frontend/home");
+//    }
+    public Viewable index(){
         return new Viewable("/frontend/home");
     }
 }

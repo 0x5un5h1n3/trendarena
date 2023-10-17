@@ -80,7 +80,7 @@
 
                             <div class="sign-up-box">
                                 <h4>Don't have an account?</h4>
-                                <a href="sign-up.html">Sign Up</a>
+                                <a href="${BASE_URL}signup">Sign Up</a>
                             </div>
                         </div>
                     </div>

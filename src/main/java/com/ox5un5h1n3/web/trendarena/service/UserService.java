@@ -15,7 +15,7 @@ public class UserService {
     public User getByEmail(String email){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            return  session.createQuery("select u from User u where u.email=:email", User.class)
+            return session.createQuery("select u from User u where u.email=:email", User.class)
                     .setParameter("email", email)
                     .uniqueResult();
         }catch (NoResultException ex){

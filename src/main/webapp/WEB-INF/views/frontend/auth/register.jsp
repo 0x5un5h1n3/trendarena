@@ -53,7 +53,7 @@
                   </div>
 
                   <div class="col-12">
-                    <button class="btn btn-animation w-100 sign-up" type="submit">Sign Up</button>
+                    <button class="btn btn-animation w-100 sign-up" type="">Sign Up</button>
                   </div>
                 </form>
               </div>
@@ -87,7 +87,7 @@
 
               <div class="sign-up-box">
                 <h4>Already have an account?</h4>
-                <a href="login.html">Log In</a>
+                <a href="${BASE_URL}signin">Log In</a>
               </div>
             </div>
           </div>
@@ -103,6 +103,7 @@
   <layout:put block="script">
     <script type="text/javascript">
       document.getElementsByClassName('sign-up').item(0).addEventListener('click', function (){
+        document.preventDefault(); // Prevent Form Submitting
         let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
         console.log(email)
@@ -115,8 +116,10 @@
               email:email,
               password:password
           })
-        }).then(response => Text()).then(Text => console.log(text))
+        }).then(response => response.text()).then(text => console.log(text))
       });
     </script>
   </layout:put>
+
+
 </layout:extends>

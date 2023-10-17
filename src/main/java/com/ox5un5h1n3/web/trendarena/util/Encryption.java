@@ -9,7 +9,6 @@ public class Encryption {
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
             digest.update(source.getBytes(),0, source.length());
-            System.out.println(digest.digest());
             BigInteger integer = new BigInteger(1, digest.digest());
             md5 = integer.toString(16);
         }catch (Exception ex){

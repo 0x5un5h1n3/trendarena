@@ -83,63 +83,63 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3">
-                    <ul class="about-list right-nav-about">
-                        <li class="right-nav-list">
-                            <div class="dropdown theme-form-select">
-                                <button class="btn dropdown-toggle" type="button" id="select-language"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="${BASE_URL}assets/images/country/united-states.png"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                    <span>English</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="select-language">
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="english">
-                                            <img src="${BASE_URL}assets/images/country/united-kingdom.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>English</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="france">
-                                            <img src="${BASE_URL}assets/images/country/germany.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>Germany</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="chinese">
-                                            <img src="${BASE_URL}assets/images/country/turkish.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>Turki</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="right-nav-list">
-                            <div class="dropdown theme-form-select">
-                                <button class="btn dropdown-toggle" type="button" id="select-dollar"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span>USD</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end sm-dropdown-menu"
-                                    aria-labelledby="select-dollar">
-                                    <li>
-                                        <a class="dropdown-item" id="aud" href="javascript:void(0)">AUD</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="eur" href="javascript:void(0)">EUR</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="cny" href="javascript:void(0)">CNY</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+<%--                <div class="col-lg-3">--%>
+<%--                    <ul class="about-list right-nav-about">--%>
+<%--                        <li class="right-nav-list">--%>
+<%--                            <div class="dropdown theme-form-select">--%>
+<%--                                <button class="btn dropdown-toggle" type="button" id="select-language"--%>
+<%--                                        data-bs-toggle="dropdown" aria-expanded="false">--%>
+<%--                                    <img src="${BASE_URL}assets/images/country/united-states.png"--%>
+<%--                                         class="img-fluid blur-up lazyload" alt="">--%>
+<%--                                    <span>English</span>--%>
+<%--                                </button>--%>
+<%--                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="select-language">--%>
+<%--                                    <li>--%>
+<%--                                        <a class="dropdown-item" href="javascript:void(0)" id="english">--%>
+<%--                                            <img src="${BASE_URL}assets/images/country/united-kingdom.png"--%>
+<%--                                                 class="img-fluid blur-up lazyload" alt="">--%>
+<%--                                            <span>English</span>--%>
+<%--                                        </a>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <a class="dropdown-item" href="javascript:void(0)" id="france">--%>
+<%--                                            <img src="${BASE_URL}assets/images/country/germany.png"--%>
+<%--                                                 class="img-fluid blur-up lazyload" alt="">--%>
+<%--                                            <span>Germany</span>--%>
+<%--                                        </a>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <a class="dropdown-item" href="javascript:void(0)" id="chinese">--%>
+<%--                                            <img src="${BASE_URL}assets/images/country/turkish.png"--%>
+<%--                                                 class="img-fluid blur-up lazyload" alt="">--%>
+<%--                                            <span>Turki</span>--%>
+<%--                                        </a>--%>
+<%--                                    </li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                        <li class="right-nav-list">--%>
+<%--                            <div class="dropdown theme-form-select">--%>
+<%--                                <button class="btn dropdown-toggle" type="button" id="select-dollar"--%>
+<%--                                        data-bs-toggle="dropdown" aria-expanded="false">--%>
+<%--                                    <span>USD</span>--%>
+<%--                                </button>--%>
+<%--                                <ul class="dropdown-menu dropdown-menu-end sm-dropdown-menu"--%>
+<%--                                    aria-labelledby="select-dollar">--%>
+<%--                                    <li>--%>
+<%--                                        <a class="dropdown-item" id="aud" href="javascript:void(0)">AUD</a>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <a class="dropdown-item" id="eur" href="javascript:void(0)">EUR</a>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <a class="dropdown-item" id="cny" href="javascript:void(0)">CNY</a>--%>
+<%--                                    </li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
             </div>
         </div>
     </div>

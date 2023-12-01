@@ -8,6 +8,7 @@
     <artifactId>TrendArena</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    <name>TrendArena</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -16,6 +17,7 @@
     </properties>
 
     <dependencies>
+
         <!--Tomcat Server-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -36,7 +38,15 @@
             <scope>compile</scope>
         </dependency>
 
-        <!--Jersey Core-->
+        <!--Jakarta Servlet-->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Jersey-->
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-common</artifactId>
@@ -57,64 +67,45 @@
             <artifactId>jersey-mvc-jsp</artifactId>
             <version>3.1.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.ext</groupId>
-            <artifactId>jersey-bean-validation</artifactId>
-            <version>3.1.2</version>
-        </dependency>
+
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>3.1.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-
+        <!--Fusionauth-->
         <dependency>
             <groupId>io.fusionauth</groupId>
             <artifactId>fusionauth-jwt</artifactId>
             <version>5.2.4</version>
         </dependency>
 
-        <!--Hibernate-->
+        <!--Hibernate & MySQL-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>6.1.7.Final</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate.validator</groupId>-->
-<!--            <artifactId>hibernate-validator</artifactId>-->
-<!--            <version>8.0.1.Final</version>-->
-<!--        </dependency>-->
-
-
-        <!--MySQL-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.1.Final</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.31</version>
         </dependency>
 
+        <!--Jakarta JSTL-->
         <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>2.0.0-M1</version>
         </dependency>
 
-        <!--Template Inheritance-->
-        <!-- <dependency>
-            <groupId>kr.pe.kwonnam.jsp</groupId>
-            <artifactId>jsp-template-inheritance</artifactId>
-            <version>0.3.RELEASE</version>
-            <scope>compile</scope>
-        </dependency> -->
-        
+        <!--JSP Template Inheritance-->
         <dependency>
             <groupId>lk.callidora.jsp</groupId>
             <artifactId>jsp-template-inheritance</artifactId>
@@ -143,7 +134,7 @@
     </distributionManagement>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>${project.name}</finalName>
     </build>
 
 </project>

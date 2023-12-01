@@ -158,23 +158,23 @@
                 <p>&copy;TrendArena. All rigths reserved.</p>
             </div>
 
-            <ul class="payment-box">
-                <li>
-                    <img src="${BASE_URL}assets/images/icon/paymant/visa.png" class="blur-up lazyload" alt="">
-                </li>
-                <li>
-                    <img src="${BASE_URL}assets/images/icon/paymant/discover.png" alt="" class="blur-up lazyload">
-                </li>
-                <li>
-                    <img src="${BASE_URL}assets/images/icon/paymant/american.png" alt="" class="blur-up lazyload">
-                </li>
-                <li>
-                    <img src="${BASE_URL}assets/images/icon/paymant/master-card.png" alt="" class="blur-up lazyload">
-                </li>
-                <li>
-                    <img src="${BASE_URL}assets/images/icon/paymant/giro-pay.png" alt="" class="blur-up lazyload">
-                </li>
-            </ul>
+<%--            <ul class="payment-box">--%>
+<%--                <li>--%>
+<%--                    <img src="${BASE_URL}assets/images/icon/paymant/visa.png" class="blur-up lazyload" alt="">--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <img src="${BASE_URL}assets/images/icon/paymant/discover.png" alt="" class="blur-up lazyload">--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <img src="${BASE_URL}assets/images/icon/paymant/american.png" alt="" class="blur-up lazyload">--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <img src="${BASE_URL}assets/images/icon/paymant/master-card.png" alt="" class="blur-up lazyload">--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <img src="${BASE_URL}assets/images/icon/paymant/giro-pay.png" alt="" class="blur-up lazyload">--%>
+<%--                </li>--%>
+<%--            </ul>--%>
         </div>
     </div>
 </footer>

@@ -1,4 +1,4 @@
-package com.ox5un5h1n3.web.trendarena.controllers;
+package com.ox5un5h1n3.web.trendarena.controller;
 
 import com.ox5un5h1n3.web.trendarena.entity.User;
 import jakarta.ws.rs.GET;

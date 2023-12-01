@@ -22,16 +22,16 @@
                                 <form class="row g-4">
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating log-in-form">
-                                            <input type="email" class="form-control" id="email" placeholder="Email Address">
-                                            <label for="email">Email Address</label>
+                                            <input type="email" class="form-control" id="login_email" placeholder="Email Address">
+                                            <label for="login_email">Email Address</label>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating log-in-form">
-                                            <input type="password" class="form-control" id="password"
+                                            <input type="password" class="form-control" id="login_password"
                                                    placeholder="Password">
-                                            <label for="password">Password</label>
+                                            <label for="login_password">Password</label>
                                         </div>
                                     </div>
 
@@ -47,40 +47,41 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <button class="btn btn-animation w-100 justify-content-center" type="submit">Log
-                                            In</button>
+<%--                                        <button class="btn btn-animation w-100 justify-content-center" type="submit">Log</button>--%>
+                                            <a href="#" class="btn btn-animation w-100 login" type="">Sign In</a>
+
                                     </div>
                                 </form>
                             </div>
 
-                            <div class="other-log-in">
-                                <h6>or</h6>
-                            </div>
+<%--                            <div class="other-log-in">--%>
+<%--                                <h6>or</h6>--%>
+<%--                            </div>--%>
 
-                            <div class="log-in-button">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.google.com/" class="btn google-button w-100">
-                                            <img src="${BASE_URL}assets/images/inner-page/google.png" class="blur-up lazyload"
-                                                 alt=""> Log In with Google
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.facebook.com/" class="btn google-button w-100">
-                                            <img src="${BASE_URL}assets/images/inner-page/facebook.png" class="blur-up lazyload"
-                                                 alt=""> Log In with Facebook
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+<%--                            <div class="log-in-button">--%>
+<%--                                <ul>--%>
+<%--                                    <li>--%>
+<%--                                        <a href="https://www.google.com/" class="btn google-button w-100">--%>
+<%--                                            <img src="${BASE_URL}assets/images/inner-page/google.png" class="blur-up lazyload"--%>
+<%--                                                 alt=""> Log In with Google--%>
+<%--                                        </a>--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <a href="https://www.facebook.com/" class="btn google-button w-100">--%>
+<%--                                            <img src="${BASE_URL}assets/images/inner-page/facebook.png" class="blur-up lazyload"--%>
+<%--                                                 alt=""> Log In with Facebook--%>
+<%--                                        </a>--%>
+<%--                                    </li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
 
-                            <div class="other-log-in">
-                                <h6></h6>
-                            </div>
+<%--                            <div class="other-log-in">--%>
+<%--                                <h6></h6>--%>
+<%--                            </div>--%>
 
                             <div class="sign-up-box">
                                 <h4>Don't have an account?</h4>
-                                <a href="${BASE_URL}signup">Sign Up</a>
+                                <a href="${BASE_URL}register">Sign Up</a>
                             </div>
                         </div>
                     </div>
@@ -90,9 +91,36 @@
         <!-- log in section end -->
     </layout:put>
 
-    <layout:put block="script">
 
-        <script type="">
+    <layout:put block="script">
+        <script type="text/javascript">
+            document.getElementsByClassName('login').item(0).addEventListener('click', function () {
+                let email = document.getElementById("login_email").value;
+                let password = document.getElementById("login_password").value;
+
+
+                fetch('login', {
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                })
+                    .then(response => response.text())
+                    .then((text) => {
+                        if (text === "success") {
+                            // alert("Login Successful");
+                            document.location.href = ${BASE_URL};
+                        } else {
+                            alert(text);
+
+                        }
+                    });
+
+            });
         </script>
     </layout:put>
 

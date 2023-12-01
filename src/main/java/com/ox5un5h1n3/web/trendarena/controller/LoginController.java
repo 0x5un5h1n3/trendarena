@@ -1,6 +1,7 @@
-package com.ox5un5h1n3.web.trendarena.controllers;
+package com.ox5un5h1n3.web.trendarena.controller;
 
 import com.ox5un5h1n3.web.trendarena.entity.User;
+import com.ox5un5h1n3.web.trendarena.util.Encryption;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -19,21 +20,21 @@ public class LoginController {
 
     @POST
     public String loginAction(User user, @Context HttpServletRequest request){
-        if(user.getUsername().isEmpty()){
-            return "Please enter the username";
+        if(user.getEmail().isEmpty()){
+            return "Please enter your Email!";
 //            return Response.ok().entity("Please Enter product Title").build();
         } else if (user.getPassword().isEmpty()){
-            return "Please enter the password";
+            return "Please enter your Password!";
         } else {
             UserService userService = new UserService();
-            User isUser = userService.getByUsernameAndPassword(user.getUsername(), user.getPassword());
+            User isUser = userService.getByEmailAndPassword(user.getEmail(), Encryption.encrypt(user.getPassword()));
 
             if(isUser != null){
                 request.getSession().setAttribute("userLogged",user);
                 request.getSession().setAttribute("isUserLoggedIn",true);
                 return "success";
             } else {
-                return "Invalid username or password";
+                return "Invalid email or password";
             }
 
         }

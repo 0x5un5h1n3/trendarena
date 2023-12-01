@@ -306,6 +306,10 @@
 
 <!-- script js -->
 <script src="${BASE_URL}assets/js/script.js"></script>
+
+<!-- main js -->
+<script src="${BASE_URL}assets/js/main.js"></script>
+
 <layout:block name="script"></layout:block>
 </body>
 

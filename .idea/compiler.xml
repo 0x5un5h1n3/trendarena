@@ -9,5 +9,8 @@
         <module name="TrendArena" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="crud_op_web" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

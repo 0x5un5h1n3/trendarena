@@ -1,6 +1,6 @@
-package lk.jiat.webapp;
+package com.ox5un5h1n3.web.trendarena;
 
-import lk.jiat.webapp.util.HibernateUtil;
+import com.ox5un5h1n3.web.trendarena.util.HibernateUtil;
 
 public class Test {
 

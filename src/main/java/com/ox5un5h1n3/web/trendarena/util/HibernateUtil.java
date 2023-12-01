@@ -1,4 +1,4 @@
-package lk.jiat.webapp.util;
+package com.ox5un5h1n3.web.trendarena.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

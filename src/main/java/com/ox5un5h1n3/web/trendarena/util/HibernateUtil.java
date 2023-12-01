@@ -1,7 +1,6 @@
-package com.ox5un5h1n3.web.trendarena.util;
+package lk.jiat.webapp.util;
 
 import org.hibernate.SessionFactory;
-
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
@@ -11,12 +10,14 @@ public class HibernateUtil {
     private static SessionFactory buildSessionFactory(){
         try {
             return new Configuration().configure().buildSessionFactory();
-        }catch (Exception ex){
+        } catch (Exception ex) {
+            ex.printStackTrace();
             throw new ExceptionInInitializerError();
         }
     }
 
-    public static SessionFactory getSessionFactory(){
+    public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
 }

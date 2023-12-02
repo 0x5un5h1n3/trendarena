@@ -384,7 +384,7 @@ $(".theme-option .setting-box .setting-button").click(function () {
 function readURL(uploader) {
     $('.update_img').attr('src',
         window.URL.createObjectURL(uploader.files[0]));
-};
+}
 
 /*=====================
    21. Wishlist box remove js

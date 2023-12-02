@@ -48,6 +48,7 @@ public class UserService {
         return user;
     }
 
+
     public List<User> getAllUsers(){
         Session session = HibernateUtil.getSessionFactory().openSession();
         try{

@@ -2805,7 +2805,7 @@
                                      if (!t.numKeys) return 0;
                                      var s = "";
                                      s = "s" in e.keyframes[i - 1] ? e.keyframes[i - 1].s : "e" in e.keyframes[i - 2] ? e.keyframes[i - 2].e : e.keyframes[i - 2].s;
-                                     var a = "unidimensional" === r ? new Number(s) : Object.assign({}, s);
+                                     var a = "unidimensional" === r ? Number(s) : Object.assign({}, s);
                                      return a.time = e.keyframes[i - 1].t / e.elem.comp.globalData.frameRate, a.value = "unidimensional" === r ? s[0] : s, a
                                  }, t.valueAtTime = e.getValueAtTime, t.speedAtTime = e.getSpeedAtTime, t.velocityAtTime = e.getVelocityAtTime, t.propertyGroup = e.propertyGroup
                              }
@@ -2818,10 +2818,10 @@
                                      e && "pv" in e || (e = t);
                                      var i = 1 / e.mult,
                                          s = e.pv * i,
-                                         a = new Number(s);
+                                         a = Number(s);
                                      return a.value = s, r(a, e, "unidimensional"),
                                          function () {
-                                             return e.k && e.getValue(), s = e.v * i, a.value !== s && ((a = new Number(s)).value = s, r(a, e, "unidimensional")), a
+                                             return e.k && e.getValue(), s = e.v * i, a.value !== s && ((a = Number(s)).value = s, r(a, e, "unidimensional")), a
                                          }
                                  }(s) : function (t) {
                                      t && "pv" in t || (t = e);
@@ -3475,7 +3475,7 @@
                                  get: function () {
                                      t.textProperty.getValue();
                                      var i = t.textProperty.currentData.t;
-                                     return i !== e && (t.textProperty.currentData.t = e, (r = new String(i)).value = i || new String(i)), r
+                                     return i !== e && (t.textProperty.currentData.t = e, (r = String(i)).value = i || String(i)), r
                                  }
                              }), i
                          },
@@ -6399,7 +6399,7 @@
                                      width = elem.data.sw ? elem.data.sw : 0,
                                      height = elem.data.sh ? elem.data.sh : 0,
                                      name = elem.data.nm,
-                                     loopIn, loop_in, loopOut, loop_out, smooth, toWorld, fromWorld, fromComp, toComp, fromCompToSurface, position, rotation, anchorPoint, scale, thisLayer, thisComp, mask, valueAtTime, velocityAtTime, scoped_bm_rt, expression_function = eval("[function _expression_function(){" + val + ";scoped_bm_rt=$bm_rt}]")[0],
+                                     loopIn, loop_in, loopOut, loop_out, smooth, toWorld, fromWorld, fromComp, toComp, fromCompToSurface, position, rotation, anchorPoint, scale, thisLayer, thisComp, mask, valueAtTime, velocityAtTime, scoped_bm_rt, expression_function = eval("[function _expression_function(){" + val + "scoped_bm_rt=$bm_rt}]")[0],
                                      numKeys = property.kf ? data.k.length : 0,
                                      active = !this.data || !0 !== this.data.hd,
                                      wiggle = function (t, e) {

@@ -114,6 +114,8 @@
                         if (text === "success") {
                             // alert("Login Successful");
                             document.location.href = ${BASE_URL};
+                        }else if(text === "admin-login-success"){
+                            document.location.href = ${BASE_URL}+"admin";
                         } else {
                             alert(text);
 

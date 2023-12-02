@@ -7,7 +7,7 @@
      function checkPosition() {
          function fixButtonHeights() {
              if (window.matchMedia('(min-width: 320px)').matches) {
-                 var heights = new Array();
+                 var heights = [];
                  $('.product-section .product-box .product-detail h6.name').each(
                      function () {
                          $(this).css('min-height', '0');

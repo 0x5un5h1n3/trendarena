@@ -36,8 +36,10 @@ public class LoginController {
             if (isUser != null) {
 
 
-                request.getSession().setAttribute("userLogged", user);
+                request.getSession().setAttribute("userLogged", isUser);
                 request.getSession().setAttribute("isUserLoggedIn", true);
+                request.getSession().setAttribute("userName", isUser.getName());
+                request.getSession().setAttribute("userType", isUser.getUserType().toString());
 
                 if (isUser.getUserType().toString().equals("ADMIN")) {
                     return "admin-login-success";

@@ -1,4 +1,26 @@
 <%@ taglib uri="http://callidora.lk/jsp/template-inheritance" prefix="layout" %>
+<%@page import="java.util.Map"%>
+<%@page import="com.ox5un5h1n3.web.trendarena.util.Helper"%>
+<%@page import="java.util.List"%>
+<%@page import="com.ox5un5h1n3.web.trendarena.util.HibernateUtil"%>
+<%@page import="com.ox5un5h1n3.web.trendarena.dao.*"%>
+<%@page import="com.ox5un5h1n3.web.trendarena.entity.*"%>
+
+<%
+    User user = (User) session.getAttribute("userLogged");
+    if (user == null) {
+//        session.setAttribute("message", "You are not logged in !! Login first");
+        response.sendRedirect("login");
+        return;
+    } else {
+        if (user.getUserType().toString().equals("USER")) {
+//            session.setAttribute("message", "You are not Admin !! Do not access this page");
+            response.sendRedirect("login");
+            return;
+        }
+    }
+%>
+
 
 <!doctype html>
 <html lang="en">
@@ -19,7 +41,7 @@
         <div class="header-wrapper m-0">
             <div class="header-logo-wrapper p-0">
                 <div class="logo-wrapper">
-                    <a href="index.html">
+                    <a href="${BASE_URL}admin">
                         <img class="img-fluid main-logo" src="${BASE_URL}assets/admin/images/logo/1.png" alt="logo">
                         <img class="img-fluid white-logo" src="${BASE_URL}assets/admin/images/logo/1-white.png"
                              alt="logo">
@@ -27,27 +49,27 @@
                 </div>
                 <div class="toggle-sidebar">
                     <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
-                    <a href="index.html">
+                    <a href="${BASE_URL}admin">
                         <img src="${BASE_URL}assets/admin/images/logo/1.png" class="img-fluid" alt="">
                     </a>
                 </div>
             </div>
 
-            <form class="form-inline search-full" action="javascript:void(0)" method="get">
-                <div class="form-group w-100">
-                    <div class="Typeahead Typeahead--twitterUsers">
-                        <div class="u-posRelative">
-                            <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
-                                   placeholder="Search TrendArena .." name="q" title="" autofocus>
-                            <i class="close-search" data-feather="x"></i>
-                            <div class="spinner-border Typeahead-spinner" role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
-                        <div class="Typeahead-menu"></div>
-                    </div>
-                </div>
-            </form>
+<%--            <form class="form-inline search-full" action="javascript:void(0)" method="get">--%>
+<%--                <div class="form-group w-100">--%>
+<%--                    <div class="Typeahead Typeahead--twitterUsers">--%>
+<%--                        <div class="u-posRelative">--%>
+<%--                            <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"--%>
+<%--                                   placeholder="Search TrendArena .." name="q" title="" autofocus>--%>
+<%--                            <i class="close-search" data-feather="x"></i>--%>
+<%--                            <div class="spinner-border Typeahead-spinner" role="status">--%>
+<%--                                <span class="sr-only">Loading...</span>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="Typeahead-menu"></div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </form>--%>
             <div class="nav-right col-6 pull-right right-header p-0">
                 <ul class="nav-menus">
                     <li>
@@ -55,45 +77,45 @@
                                 <i class="ri-search-line"></i>
                             </span>
                     </li>
-                    <li class="onhover-dropdown">
-                        <div class="notification-box">
-                            <i class="ri-notification-line"></i>
-                            <span class="badge rounded-pill badge-theme">4</span>
-                        </div>
-                        <ul class="notification-dropdown onhover-show-div">
-                            <li>
-                                <i class="ri-notification-line"></i>
-                                <h6 class="f-18 mb-0">Notitications</h6>
-                            </li>
-                            <li>
-                                <p>
-                                    <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span
-                                        class="pull-right">10 min.</span>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <i class="fa fa-circle me-2 font-success"></i>Order Complete<span
-                                        class="pull-right">1 hr</span>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <i class="fa fa-circle me-2 font-info"></i>Tickets Generated<span
-                                        class="pull-right">3 hr</span>
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    <i class="fa fa-circle me-2 font-danger"></i>Delivery Complete<span
-                                        class="pull-right">6 hr</span>
-                                </p>
-                            </li>
-                            <li>
-                                <a class="btn btn-primary" href="javascript:void(0)">Check all notification</a>
-                            </li>
-                        </ul>
-                    </li>
+<%--                    <li class="onhover-dropdown">--%>
+<%--                        <div class="notification-box">--%>
+<%--                            <i class="ri-notification-line"></i>--%>
+<%--                            <span class="badge rounded-pill badge-theme">4</span>--%>
+<%--                        </div>--%>
+<%--                        <ul class="notification-dropdown onhover-show-div">--%>
+<%--                            <li>--%>
+<%--                                <i class="ri-notification-line"></i>--%>
+<%--                                <h6 class="f-18 mb-0">Notitications</h6>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <p>--%>
+<%--                                    <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span--%>
+<%--                                        class="pull-right">10 min.</span>--%>
+<%--                                </p>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <p>--%>
+<%--                                    <i class="fa fa-circle me-2 font-success"></i>Order Complete<span--%>
+<%--                                        class="pull-right">1 hr</span>--%>
+<%--                                </p>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <p>--%>
+<%--                                    <i class="fa fa-circle me-2 font-info"></i>Tickets Generated<span--%>
+<%--                                        class="pull-right">3 hr</span>--%>
+<%--                                </p>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <p>--%>
+<%--                                    <i class="fa fa-circle me-2 font-danger"></i>Delivery Complete<span--%>
+<%--                                        class="pull-right">6 hr</span>--%>
+<%--                                </p>--%>
+<%--                            </li>--%>
+<%--                            <li>--%>
+<%--                                <a class="btn btn-primary" href="javascript:void(0)">Check all notification</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </li>--%>
 
                     <li>
                         <div class="mode">
@@ -171,14 +193,16 @@
                 <p>Are you sure you want to log out?</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="button-box">
+
                     <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                    <a href="${BASE_URL}logout"><button type="button" class="btn  btn--yes btn-primary">Yes</button></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Modal End -->
+
 
 <!-- latest js -->
 <script src="${BASE_URL}assets/admin/js/jquery-3.6.0.min.js"></script>
@@ -202,15 +226,15 @@
 
 <!-- Plugins JS -->
 <script src="${BASE_URL}assets/admin/js/sidebar-menu.js"></script>
-<script src="${BASE_URL}assets/admin/js/notify/bootstrap-notify.min.js"></script>
+<%--<script src="${BASE_URL}assets/admin/js/notify/bootstrap-notify.min.js"></script>--%>
 <script src="${BASE_URL}assets/admin/js/notify/index.js"></script>
 
 <!-- Apexchar js -->
-<script src="${BASE_URL}assets/admin/js/chart/apex-chart/apex-chart1.js"></script>
-<script src="${BASE_URL}assets/admin/js/chart/apex-chart/moment.min.js"></script>
-<script src="${BASE_URL}assets/admin/js/chart/apex-chart/apex-chart.js"></script>
-<script src="${BASE_URL}assets/admin/js/chart/apex-chart/stock-prices.js"></script>
-<script src="${BASE_URL}assets/admin/js/chart/apex-chart/chart-custom1.js"></script>
+<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/apex-chart1.js"></script>--%>
+<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/moment.min.js"></script>--%>
+<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/apex-chart.js"></script>--%>
+<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/stock-prices.js"></script>--%>
+<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/chart-custom1.js"></script>--%>
 
 
 <!-- slick slider js -->

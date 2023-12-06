@@ -9,15 +9,15 @@
 <body class="theme-color-5">
 
 <!-- Loader Start -->
-<div class="fullpage-loader">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-<!-- Loader End -->
+<%--<div class="fullpage-loader">--%>
+<%--    <span></span>--%>
+<%--    <span></span>--%>
+<%--    <span></span>--%>
+<%--    <span></span>--%>
+<%--    <span></span>--%>
+<%--    <span></span>--%>
+<%--</div>--%>
+<%--<!-- Loader End -->--%>
 
 
 

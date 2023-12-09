@@ -12,11 +12,11 @@ import java.util.List;
 public class AdminPanelController {
 
     @GET
-    public Viewable index(){
+    public Viewable index() {
 
         UserService userService = new UserService();
         List<User> users = userService.getAllUsers();
 
-        return new Viewable("/frontend/admin",users);
+        return new Viewable("/frontend/admin", users);
     }
 }

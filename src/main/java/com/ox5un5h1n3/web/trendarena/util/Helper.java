@@ -33,7 +33,7 @@ public class Helper {
 	public static Map<String,Long> getCounts(SessionFactory factory)
 	{
 		Session session = factory.openSession();
-		String q1="Select count(*) from User";
+		String q1="Select count(*) from User u where u.userType = 'USER'";
 		String q2="Select count(*) from Product";
 		
 		Query query1 = session.createQuery(q1);

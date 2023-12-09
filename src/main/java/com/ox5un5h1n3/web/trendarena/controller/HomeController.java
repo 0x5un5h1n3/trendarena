@@ -29,6 +29,6 @@ public class HomeController {
         // Pass the logged-in user's name or "My Account" to the view
         String userName = isLoggedIn ? loggedUser.getName() : "My Account";
 
-        return new Viewable("/frontend/home2", userName);
+        return new Viewable("/frontend/home", userName);
     }
 }

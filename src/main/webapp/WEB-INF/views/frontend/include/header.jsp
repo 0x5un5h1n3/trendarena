@@ -555,6 +555,7 @@
                                         </div>
                                     </div>
                                 </li>
+
                                 <li class="right-side">
                                     <a href="wishlist.html" class="btn p-0 position-relative header-wishlist">
                                         <i data-feather="bookmark"></i>
@@ -624,6 +625,8 @@
                                         </div>
                                     </div>
                                 </li>
+
+
                                 <li class="right-side onhover-dropdown">
                                     <div class="delivery-login-box">
                                         <div class="delivery-icon">

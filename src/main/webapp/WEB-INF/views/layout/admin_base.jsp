@@ -6,20 +6,29 @@
 <%@page import="com.ox5un5h1n3.web.trendarena.dao.*"%>
 <%@page import="com.ox5un5h1n3.web.trendarena.entity.*"%>
 
+
+
 <%
     User user = (User) session.getAttribute("userLogged");
     if (user == null) {
-//        session.setAttribute("message", "You are not logged in !! Login first");
-        response.sendRedirect("login");
+        response.sendRedirect(request.getContextPath()+"/login");
         return;
     } else {
         if (user.getUserType().toString().equals("USER")) {
-//            session.setAttribute("message", "You are not Admin !! Do not access this page");
-            response.sendRedirect("login");
+            response.sendRedirect(request.getContextPath()+"/login");
             return;
         }
     }
 %>
+
+<%
+    CategoryDao cdao = new CategoryDao(HibernateUtil.getSessionFactory());
+    List<Category> list = cdao.getCategories();
+
+    Map<String, Long> m= Helper.getCounts(HibernateUtil.getSessionFactory());
+%>
+
+
 
 
 <!doctype html>
@@ -36,145 +45,272 @@
 
 <!-- page-wrapper Start-->
 <div class="page-wrapper compact-wrapper" id="pageWrapper">
-    <!-- Page Header Start-->
-    <div class="page-header">
-        <div class="header-wrapper m-0">
-            <div class="header-logo-wrapper p-0">
-                <div class="logo-wrapper">
-                    <a href="${BASE_URL}admin">
-                        <img class="img-fluid main-logo" src="${BASE_URL}assets/admin/images/logo/1.png" alt="logo">
-                        <img class="img-fluid white-logo" src="${BASE_URL}assets/admin/images/logo/1-white.png"
-                             alt="logo">
-                    </a>
-                </div>
-                <div class="toggle-sidebar">
-                    <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
-                    <a href="${BASE_URL}admin">
-                        <img src="${BASE_URL}assets/admin/images/logo/1.png" class="img-fluid" alt="">
-                    </a>
-                </div>
-            </div>
 
-<%--            <form class="form-inline search-full" action="javascript:void(0)" method="get">--%>
-<%--                <div class="form-group w-100">--%>
-<%--                    <div class="Typeahead Typeahead--twitterUsers">--%>
-<%--                        <div class="u-posRelative">--%>
-<%--                            <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"--%>
-<%--                                   placeholder="Search TrendArena .." name="q" title="" autofocus>--%>
-<%--                            <i class="close-search" data-feather="x"></i>--%>
-<%--                            <div class="spinner-border Typeahead-spinner" role="status">--%>
-<%--                                <span class="sr-only">Loading...</span>--%>
+
+
+
+<jsp:include page="../frontend/include/admin_page_header.jsp"/>
+<jsp:include page="../frontend/include/admin_footer.jsp"/>
+    <!-- Page Body Start-->
+    <div class="page-body-wrapper">
+<jsp:include page="../frontend/include/admin_sidebar.jsp"/>
+
+
+        <!-- index body start -->
+        <div class="page-body">
+            <!-- Container-fluid start-->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- chart caard section start -->
+<%--                    <div class="col-sm-6 col-xxl-3 col-lg-6">--%>
+<%--                        <div class="main-tiles border-5 border-0  card-hover card o-hidden">--%>
+<%--                            <div class="custome-1-bg b-r-4 card-body">--%>
+<%--                                <div class="media align-items-center static-top-widget">--%>
+<%--                                    <div class="media-body p-0">--%>
+<%--                                        <span class="m-0">Total Revenue</span>--%>
+<%--                                        <h4 class="mb-0 counter">$6659--%>
+<%--                                            <span class="badge badge-light-primary grow">--%>
+<%--                                                    <i data-feather="trending-up"></i>8.5%</span>--%>
+<%--                                        </h4>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="align-self-center text-center">--%>
+<%--                                        <i class="ri-database-2-line"></i>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
 <%--                            </div>--%>
 <%--                        </div>--%>
-<%--                        <div class="Typeahead-menu"></div>--%>
 <%--                    </div>--%>
-<%--                </div>--%>
-<%--            </form>--%>
-            <div class="nav-right col-6 pull-right right-header p-0">
-                <ul class="nav-menus">
-                    <li>
-                            <span class="header-search">
-                                <i class="ri-search-line"></i>
-                            </span>
-                    </li>
-<%--                    <li class="onhover-dropdown">--%>
-<%--                        <div class="notification-box">--%>
-<%--                            <i class="ri-notification-line"></i>--%>
-<%--                            <span class="badge rounded-pill badge-theme">4</span>--%>
-<%--                        </div>--%>
-<%--                        <ul class="notification-dropdown onhover-show-div">--%>
-<%--                            <li>--%>
-<%--                                <i class="ri-notification-line"></i>--%>
-<%--                                <h6 class="f-18 mb-0">Notitications</h6>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <p>--%>
-<%--                                    <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span--%>
-<%--                                        class="pull-right">10 min.</span>--%>
-<%--                                </p>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <p>--%>
-<%--                                    <i class="fa fa-circle me-2 font-success"></i>Order Complete<span--%>
-<%--                                        class="pull-right">1 hr</span>--%>
-<%--                                </p>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <p>--%>
-<%--                                    <i class="fa fa-circle me-2 font-info"></i>Tickets Generated<span--%>
-<%--                                        class="pull-right">3 hr</span>--%>
-<%--                                </p>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <p>--%>
-<%--                                    <i class="fa fa-circle me-2 font-danger"></i>Delivery Complete<span--%>
-<%--                                        class="pull-right">6 hr</span>--%>
-<%--                                </p>--%>
-<%--                            </li>--%>
-<%--                            <li>--%>
-<%--                                <a class="btn btn-primary" href="javascript:void(0)">Check all notification</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
-<%--                    </li>--%>
 
-                    <li>
-                        <div class="mode">
-                            <i class="ri-moon-line"></i>
-                        </div>
-                    </li>
-                    <li class="profile-nav onhover-dropdown pe-0 me-0">
-                        <div class="media profile-media">
-                            <img class="user-profile rounded-circle" src="${BASE_URL}assets/admin/images/users/4.jpg" alt="">
-                            <div class="user-name-hide media-body">
-                                <span>John Doe</span>
-                                <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
+                    <div class="col-sm-6 col-xxl-3 col-lg-6">
+                        <div class="main-tiles border-5 card-hover border-0 card o-hidden">
+                            <div class="custome-2-bg b-r-4 card-body">
+                                <div class="media static-top-widget">
+                                    <div class="media-body p-0">
+                                        <span class="m-0">Total Categories</span>
+                                        <h4 class="mb-0 counter"><%= list.size() %>
+                                            <span class="badge badge-light-danger grow">
+                                                    <i data-feather="trending-down"></i>8.5%</span>
+                                        </h4>
+                                    </div>
+                                    <div class="align-self-center text-center">
+                                        <i class="ri-shopping-bag-3-line"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <ul class="profile-dropdown onhover-show-div">
-                            <li>
-                                <a href="all-users.html">
-                                    <i data-feather="users"></i>
-                                    <span>Users</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="order-list.html">
-                                    <i data-feather="archive"></i>
-                                    <span>Orders</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="support-ticket.html">
-                                    <i data-feather="phone"></i>
-                                    <span>Spports Tickets</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="profile-setting.html">
-                                    <i data-feather="settings"></i>
-                                    <span>Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                   href="javascript:void(0)">
-                                    <i data-feather="log-out"></i>
-                                    <span>Log out</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                    </div>
+
+                    <div class="col-sm-6 col-xxl-3 col-lg-6">
+                        <div class="main-tiles border-5 card-hover border-0  card o-hidden">
+                            <div class="custome-3-bg b-r-4 card-body">
+                                <div class="media static-top-widget">
+                                    <div class="media-body p-0">
+                                        <span class="m-0">Total Products</span>
+                                        <h4 class="mb-0 counter"><%=m.get("productCount") %>
+                                            <a href="add-new-product.html" class="badge badge-light-secondary grow">
+                                                ADD NEW</a>
+                                        </h4>
+                                    </div>
+
+                                    <div class="align-self-center text-center">
+                                        <i class="ri-chat-3-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xxl-3 col-lg-6">
+                        <div class="main-tiles border-5 card-hover border-0 card o-hidden">
+                            <div class="custome-4-bg b-r-4 card-body">
+                                <div class="media static-top-widget">
+                                    <div class="media-body p-0">
+                                        <span class="m-0">Total Customers</span>
+                                        <h4 class="mb-0 counter"><%=m.get("userCount") %>
+                                            <span class="badge badge-light-success grow">
+                                                    <i data-feather="trending-down"></i>8.5%</span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="align-self-center text-center">
+                                        <i class="ri-user-add-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card o-hidden card-hover">
+                            <div class="card-header border-0 pb-1">
+                                <div class="card-header-title p-0">
+                                    <h4>Category</h4>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="category-slider no-arrow">
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/vegetable.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Vegetables & Fruit</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/cup.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Beverages</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/meats.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Meats & Seafood</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/breakfast.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Breakfast</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/frozen.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Frozen Foods</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/milk.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Milk & Dairies</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/pet.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Pet Food</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/vegetable.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Vegetables & Fruit</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/cup.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Beverages</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/meats.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Meats & Seafood</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/breakfast.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Breakfast</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/frozen.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Frozen Foods</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/milk.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Milk & Dairies</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="dashboard-category">
+                                            <a href="javascript:void(0)" class="category-image">
+                                                <img src="${BASE_URL}assets/admin/svg/pet.svg" class="img-fluid" alt="">
+                                            </a>
+                                            <a href="javascript:void(0)" class="category-name">
+                                                <h6>Pet Food</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- chart card section End -->
+
+                </div>
             </div>
-        </div>
-    </div>
-    <!-- Page Header Ends-->
-
-
-<layout:block name="contents"></layout:block>
-
-<jsp:include page="../frontend/include/admin_footer.jsp"/>
-
+            <!-- Container-fluid Ends-->
 </div>
 <!-- index body end -->
 
@@ -182,6 +318,8 @@
 <!-- Page Body End -->
 </div>
 <!-- page-wrapper End-->
+
+
 
 <!-- Modal Start -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

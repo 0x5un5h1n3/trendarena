@@ -58,14 +58,40 @@ public class ProductDao {
     }
 
     //get all products of given category
-    public List<Product> getAllProductsById(int cid)
-    {
-        Session s=	this.factory.openSession();
-        Query query =s.createQuery("from Product as p where p.category.categoryId=:id");
-        query.setParameter("id", cid);
-        List<Product> list=query.list();
-        return  list;
+//    public List<Product> getAllProductsById(int cid)
+//    {
+//        Session s=	this.factory.openSession();
+//        Query query =s.createQuery("from Product as p where p.category.categoryId=:id");
+//        query.setParameter("id", cid);
+//        List<Product> list=query.list();
+//        return  list;
+//
+//    }
 
+    public Product getProductById(int pid){
+        Product product = null;
+        try (Session session = this.factory.openSession()) {
+            product = session.get(Product.class, pid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
+    public void updateProduct(Product product) {
+        boolean b = false;
+        Transaction tx = null;
+        try (Session session = factory.openSession()) {
+            tx = session.beginTransaction();
+            session.update(product);
+            tx.commit();
+            b = true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
 

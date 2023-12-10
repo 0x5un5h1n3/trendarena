@@ -262,7 +262,7 @@
                                                 <th>Product Image</th>
                                                 <th>Product Name</th>
                                                 <th>Category</th>
-<%--                                                <th>Current Qty</th>--%>
+                                                <th>Description</th>
                                                 <th>Price</th>
 <%--                                                <th>Status</th>--%>
                                                 <th>Option</th>
@@ -287,6 +287,8 @@
                                                 <td><%= p.getpName() %></td>
 
                                                 <td><%= p.getCategory().getCategoryTitle() %></td>
+                                                <td><%= p.getpDesc().substring(0, 14) %>...</td>
+
 
 <%--                                                <td>FIX THIS</td>--%>
 
@@ -298,14 +300,15 @@
 
                                                 <td>
                                                     <ul>
-                                                        <li>
-                                                            <a href="order-detail.html">
-                                                                <i class="ri-eye-line"></i>
-                                                            </a>
-                                                        </li>
+<%--                                                        <li>--%>
+<%--                                                            <a href="order-detail.html">--%>
+<%--                                                                <i class="ri-eye-line"></i>--%>
+<%--                                                            </a>--%>
+<%--                                                        </li>--%>
 
                                                         <li>
-                                                            <a href="javascript:void(0)">
+                                                            <a id="editicon" href="<%= request.getContextPath() %>/admin/update-product/<%= p.getPid() %>">
+<%--                                                            <a href="javascript:void(0)">--%>
                                                                 <i class="ri-pencil-line"></i>
                                                             </a>
                                                         </li>

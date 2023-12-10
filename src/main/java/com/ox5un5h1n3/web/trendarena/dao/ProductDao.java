@@ -94,6 +94,25 @@ public class ProductDao {
         }
     }
 
+    public boolean deleteProduct(int pId){
+        boolean b= false;
+        Transaction tx= null;
+        try (Session session = factory.openSession()) {
+            tx = session.beginTransaction();
+            Product product = session.get(Product.class, pId);
+            session.delete(product); //deleting the user
+            tx.commit();
+            b=true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback(); // Rollback the transaction in case of an error
+            }
+            e.printStackTrace();
+        }
+
+        return b;
+    }
+
 
 
 

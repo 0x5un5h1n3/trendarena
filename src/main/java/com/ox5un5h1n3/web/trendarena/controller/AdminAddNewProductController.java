@@ -88,7 +88,7 @@ public class AdminAddNewProductController {
 
 
             HttpSession session = request.getSession();
-            session.setAttribute("message", "Product added successfully");
+            session.setAttribute("message", "Product Saved Successfully");
 
             return Response.ok().entity("Product Saved Successfully!").build();
 

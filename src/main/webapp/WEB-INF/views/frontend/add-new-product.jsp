@@ -227,8 +227,8 @@
             })
                 .then(response => response.text())
                 .then((text) => {
-                    if (text === "Product Added Successfully!") {
-                        alert("Product Added Successfully!");
+                    if (text === "Product Saved Successfully!") {
+                        alert("Product Saved Successfully!");
                         document.location.href="${BASE_URL}admin/products"
                     } else {
                         alert(text);

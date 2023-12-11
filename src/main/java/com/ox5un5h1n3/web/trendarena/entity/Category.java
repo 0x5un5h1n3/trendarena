@@ -60,7 +60,7 @@ public class Category {
         return categoryDescriptioin;
     }
 
-    public void setCategoryDescriptioin(String categoryDescriptioin) {
+    public void setCategoryDescription(String categoryDescriptioin) {
         this.categoryDescriptioin = categoryDescriptioin;
     }
 

@@ -8,8 +8,8 @@ import org.glassfish.jersey.server.mvc.Viewable;
 
 import java.util.List;
 
-@Path("/admin/products")
-public class AdminProductsController {
+@Path("/admin/category")
+public class AdminCategoryController {
 
     @GET
     public Viewable products(){
@@ -17,6 +17,6 @@ public class AdminProductsController {
         UserService userService = new UserService();
         List<User> users = userService.getAllUsers();
 
-        return new Viewable("/frontend/products",users);
+        return new Viewable("/frontend/category",users);
     }
 }

@@ -49,7 +49,8 @@
 
         <div class="page-body">
 
-            <!-- New Product Add Start -->
+
+            <!-- Add New Category Start -->
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
@@ -58,92 +59,41 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-header-2">
-                                            <h5>Product Information</h5>
+                                            <h5>Category Information</h5>
                                         </div>
 
-                                        <form class="theme-form theme-form-2 mega-form"
-                                              enctype="multipart/form-data">
+                                        <form class="theme-form theme-form-2 mega-form">
                                             <div class="mb-4 row align-items-center">
-                                                <label class="form-label-title col-sm-3 mb-0">Name</label>
+                                                <label class="form-label-title col-sm-3 mb-0">Category Title</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control"
-                                                           placeholder="Product name" name="pName" id="pName" required />
+                                                    <input class="form-control" type="text"
+                                                           placeholder="Category Title" id="cTitle" name="cTitle" >
                                                 </div>
                                             </div>
 
                                             <div class="mb-4 row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Description</label>
+                                                <label class="form-label-title col-sm-3 mb-0">Category Description</label>
                                                 <div class="col-sm-9">
-                                                    <textarea style="height: 150px;" class="form-control"
-                                                              placeholder="Product description" name="pDesc" id="pDesc" required></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-4 row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Price</label>
-                                                <div class="col-sm-9">
-                                                    <input class="form-control" type="number" placeholder="Product Price" name="pPrice" id="pPrice" required />
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-4 row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Discount</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control"
-                                                           placeholder="Product discount" name="pDiscount" id="pDiscount" required />
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-4 row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Quantity</label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control"
-                                                           placeholder="Product quantity" name="pQuantity" id="pQuantity" required />
-                                                </div>
-                                            </div>
-
-
-                                            <div class="mb-4 row align-items-center">
-                                                <label
-                                                        class="col-sm-3 col-form-label form-label-title">Category</label>
-                                                <div class="col-sm-9">
-                                                    <select class="js-example-basic-single w-100" name="catId" class="form-control" id="pCategory">
-
-                                                            <%
-                                                                for (Category c : list) {
-                                                            %>
-                                                            <option value="<%=c.getCategoryId()%>"><%=c.getCategoryTitle()%></option>
-                                                            <%
-                                                                }
-                                                            %>
-                                                        </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Image</label>
-                                                <div class="col-sm-9">
-                                                    <input class="form-control form-choose" type="file" id="pPic" name="pPic" required />
+                                                    <input class="form-control" type="text"
+                                                           placeholder="Category Description" id="cDesc" name="cDesc" >
                                                 </div>
                                             </div>
 
                                             <div class="row align-items-center">
                                                 <div class="mt-4 ">
-                                                    <a class="btn btn-solid add-new-product" type="submit">Add Product</a>
+                                                    <a class="btn btn-solid add-new-category" type="submit">Add Category</a>
                                                 </div>
                                             </div>
 
                                         </form>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- New Product Add End -->
+            <!-- Add New Category End -->
 
             <jsp:include page="../frontend/include/admin_footer.jsp"/>
         </div>
@@ -156,44 +106,32 @@
 <jsp:include page="../frontend/include/admin_logout_modal.jsp"/>
 
     <script type="text/javascript">
-        document.getElementsByClassName('add-new-product').item(0).addEventListener('click', function () {
-            let pName = document.getElementById('pName').value;
-            let pDesc = document.getElementById('pDesc').value;
-            let pPrice = document.getElementById('pPrice').value;
-            let pDiscount = document.getElementById('pDiscount').value;
-            let pQuantity = document.getElementById('pQuantity').value;
-            let pCategory = document.getElementById('pCategory').value;
+        document.getElementsByClassName('add-new-category').item(0).addEventListener('click', function () {
+            let cTitle = document.getElementById('cTitle').value;
+            let cDesc = document.getElementById('cDesc').value;
 
-            let fileInput = document.getElementById('pPic');
-            let pPic = fileInput.files[0];
 
             let formData = new FormData();
-            formData.append('pName', pName);
-            formData.append('pDesc', pDesc);
-            formData.append('pPrice', pPrice);
-            formData.append('pDiscount', pDiscount);
-            formData.append('pQuantity', pQuantity);
-            formData.append('pCategory', pCategory);
-            formData.append('pPic', pPic);
+            formData.append('cTitle', cTitle);
+            formData.append('cDesc', cDesc);
 
-            if(pName.trim() === '' ||
-                pDesc.trim() === '' ||
-                pCategory.trim() === '') {
+            if(cTitle.trim() === '' ||
+                cDesc.trim() === '') {
                 alert("Please fill in all fields.");
                 return;
             }
 
 
 
-            fetch(`${BASE_URL}admin/add-new-product`, {
+            fetch(`${BASE_URL}admin/add-new-category`, {
                 method: 'post',
                 body: formData
             })
                 .then(response => response.text())
                 .then((text) => {
-                    if (text === "Product Saved Successfully!") {
-                        alert("Product Saved Successfully!");
-                        document.location.href="${BASE_URL}admin/products"
+                    if (text === "Category Saved Successfully!") {
+                        alert("Category Saved Successfully!");
+                        document.location.href="${BASE_URL}admin/category"
                     } else {
                         alert(text);
                     }

@@ -37,9 +37,9 @@ public class AdminDeleteProductController {
                     pdao.deleteProduct(id);
 
                     HttpSession session = request.getSession();
-                    session.setAttribute("message", "Product Deleted Successfully");
 
-            return Response.status(Response.Status.FOUND).location(UriBuilder.fromUri(contextPath+"/admin/products/").build()).build();
+                    session.setAttribute("message", "Product Deleted Successfully");
+            return Response.status(Response.Status.FOUND).location(UriBuilder.fromUri(contextPath+"/admin/products").build()).build();
 //                    return Response.ok().entity("Product Deleted Successfully!").build();
 
                 } catch (Exception e) {

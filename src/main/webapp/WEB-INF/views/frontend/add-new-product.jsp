@@ -44,43 +44,7 @@
     <!-- Page Body start -->
     <div class="page-body-wrapper">
         <!-- Page Sidebar Start-->
-        <div class="sidebar-wrapper">
-            <div id="sidebarEffect"></div>
-            <div>
-                <div class="logo-wrapper logo-wrapper-center">
-                    <a href="index.html" data-bs-original-title="" title="">
-                        <img class="img-fluid for-white" src="${BASE_URL}assets/admin/images/logo/full-white.png"
-                             alt="logo">
-                    </a>
-                    <div class="back-btn">
-                        <i class="fa fa-angle-left"></i>
-                    </div>
-                    <div class="toggle-sidebar">
-                        <i class="ri-apps-line status_toggle middle sidebar-toggle"></i>
-                    </div>
-                </div>
-                <div class="logo-icon-wrapper">
-                    <a href="index.html">
-                        <img class="img-fluid main-logo main-white"
-                             src="${BASE_URL}assets/admin/images/logo/1-white.png" alt="logo">
-                        <img class="img-fluid main-logo main-dark"
-                             src="${BASE_URL}assets/admin/images/logo/logo-white.png"
-                             alt="logo">
-                    </a>
-                </div>
-                <nav class="sidebar-main">
-                    <div class="left-arrow" id="left-arrow">
-                        <i data-feather="arrow-left"></i>
-                    </div>
-
-                    <jsp:include page="../frontend/include/admin_sidebar.jsp"/>
-
-                    <div class="right-arrow" id="right-arrow">
-                        <i data-feather="arrow-right"></i>
-                    </div>
-                </nav>
-            </div>
-        </div>
+        <jsp:include page="../frontend/include/admin_sidebar.jsp"/>
         <!-- Page Sidebar Ends-->
 
         <div class="page-body">

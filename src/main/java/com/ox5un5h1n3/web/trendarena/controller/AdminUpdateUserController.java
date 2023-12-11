@@ -3,12 +3,10 @@ package com.ox5un5h1n3.web.trendarena.controller;
 import com.ox5un5h1n3.web.trendarena.dao.CategoryDao;
 import com.ox5un5h1n3.web.trendarena.dao.ProductDao;
 import com.ox5un5h1n3.web.trendarena.dao.UserDao;
-import com.ox5un5h1n3.web.trendarena.dto.RegisterDTO;
 import com.ox5un5h1n3.web.trendarena.entity.Category;
 import com.ox5un5h1n3.web.trendarena.entity.Product;
 import com.ox5un5h1n3.web.trendarena.entity.User;
-import com.ox5un5h1n3.web.trendarena.service.UserService;
-import com.ox5un5h1n3.web.trendarena.util.Encryption;
+import com.ox5un5h1n3.web.trendarena.entity.UserType;
 import com.ox5un5h1n3.web.trendarena.util.HibernateUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -26,70 +24,54 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
-@Path("/admin/update-product/{id}")
-public class AdminUpdateProductController {
+@Path("/admin/update-user/{id}")
+public class AdminUpdateUserController {
 
     @GET
     public Viewable index(@PathParam("id") int id, @Context HttpServletRequest request){
 
-        ProductDao dao = new ProductDao(HibernateUtil.getSessionFactory());
-        Product product = dao.getProductById(id);
+        UserDao dao = new UserDao(HibernateUtil.getSessionFactory());
+        User user = dao.getUserById(id);
 
 
-        request.setAttribute("product", product);
+        request.setAttribute("user", user);
 
 
-        return new Viewable("/frontend/update-product");
+        return new Viewable("/frontend/update-user");
     }
 
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @POST
     public Response getProductById(@PathParam("id") int id,
-                                   @FormDataParam("updated_pPic") InputStream fileInputStream,
-                                   @FormDataParam("updated_pPic") FormDataContentDisposition fileDetail,
-                                   @FormDataParam("updated_pName") String updated_pName,
-                                   @FormDataParam("updated_pDesc") String updated_pDesc,
-                                   @FormDataParam("updated_pPrice") int updated_pPrice,
-                                   @FormDataParam("updated_pDiscount") int updated_pDiscount,
-                                   @FormDataParam("updated_pQuantity") int updated_pQuantity,
-                                   @FormDataParam("updated_pCategory") int updated_pCategory,
+                                   @FormDataParam("updated_uName") String updated_uName,
+                                   @FormDataParam("updated_uEmail") String updated_uEmail,
+                                   @FormDataParam("updated_uPhone") String updated_uPhone,
+                                   @FormDataParam("updated_uAddress") String updated_uAddress,
+                                   @FormDataParam("updated_uCity") String updated_uCity,
+                                   @FormDataParam("updated_uPostalCode") String updated_uPostalCode,
+                                   @FormDataParam("updated_uUserType") UserType updated_uUserType,
                                    @Context HttpServletRequest request) {
 
         try {
-            ProductDao pdao = new ProductDao(HibernateUtil.getSessionFactory());
-            Product product = pdao.getProductById(id);
+            UserDao udao = new UserDao(HibernateUtil.getSessionFactory());
+            User user = udao.getUserById(id);
 
-            // Update the product attributes with the new values
-            product.setpName(updated_pName);
-            product.setpDesc(updated_pDesc);
-            product.setpPrice(updated_pPrice);
-            product.setpDiscount(updated_pDiscount);
-            product.setpQuantity(updated_pQuantity);
-            // Update the product photo if a new photo is provided
-            if (fileInputStream != null && fileDetail != null) {
-                String fileName = UUID.randomUUID() + "_" + fileDetail.getFileName();
-                String directoryPath = request.getServletContext().getRealPath("img") + File.separator + "products";
-                File directory = new File(directoryPath);
-                if (!directory.exists()) {
-                    directory.mkdirs();
-                }
-                File file = new File(directory, fileName);
-                Files.copy(fileInputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                product.setpPhoto(fileName);
-            }
+            // Update the user attributes with the new values
+            user.setName(updated_uName);
+            user.setEmail(updated_uEmail);
+            user.setPhone(updated_uPhone);
+            user.setAddress(updated_uAddress);
+            user.setCity(updated_uCity);
+            user.setPost_code(updated_uPostalCode);
+            user.setUserType(updated_uUserType);
 
-            // Get the category by id
-            CategoryDao cdao = new CategoryDao(HibernateUtil.getSessionFactory());
-            Category category = cdao.getCategoryById(updated_pCategory);
-            product.setCategory(category);
-
-            // Update the product in the database
-            pdao.updateProduct(product);
+            // Update the user in the database
+            udao.updateUser(user);
 
             HttpSession session = request.getSession();
-            session.setAttribute("message", "Product updated successfully");
+            session.setAttribute("message", "User updated successfully");
 
-            return Response.ok().entity("Product Updated Successfully!").build();
+            return Response.ok().entity("User Updated Successfully!").build();
 
         } catch (Exception e) {
             e.printStackTrace();

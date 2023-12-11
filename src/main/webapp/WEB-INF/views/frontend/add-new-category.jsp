@@ -64,7 +64,7 @@
 
                                         <form class="theme-form theme-form-2 mega-form">
                                             <div class="mb-4 row align-items-center">
-                                                <label class="form-label-title col-sm-3 mb-0">Category Title</label>
+                                                <label class="form-label-title col-sm-3 mb-0">Title</label>
                                                 <div class="col-sm-9">
                                                     <input class="form-control" type="text"
                                                            placeholder="Category Title" id="cTitle" name="cTitle" >
@@ -72,7 +72,7 @@
                                             </div>
 
                                             <div class="mb-4 row align-items-center">
-                                                <label class="form-label-title col-sm-3 mb-0">Category Description</label>
+                                                <label class="form-label-title col-sm-3 mb-0">Description</label>
                                                 <div class="col-sm-9">
                                                     <input class="form-control" type="text"
                                                            placeholder="Category Description" id="cDesc" name="cDesc" >

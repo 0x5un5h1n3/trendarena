@@ -55,12 +55,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-header-2">
-                                            <h5>Update User Information</h5>
+                                            <h5>User Information</h5>
                                         </div>
-
-                                        <%
-                                            User u = (User) request.getAttribute("user");
-                                        %>
 
                                         <form action="${pageContext.request.contextPath}/admin/update-product/"
                                               method="POST"
@@ -70,15 +66,15 @@
                                                 <div class="col-sm-9">
                                                     <input type="hidden" class="form-control"
                                                            placeholder="User id" name="uId" id="uId" required
-                                                           value="<%= u.getId() %>"/>
+                                                           value=""/>
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label class="form-label-title col-sm-3 mb-0">Name</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control"
-                                                           placeholder="User name" name="updated_uName"
-                                                           id="updated_uName" required value="<%= u.getName() %>"/>
+                                                           placeholder="User name" name="uName"
+                                                           id="uName" required value=""/>
                                                 </div>
                                             </div>
 
@@ -86,8 +82,8 @@
                                                 <label class="col-sm-3 col-form-label form-label-title">Email</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control"
-                                                           placeholder="User email" name="updated_uEmail"
-                                                           id="updated_uEmail" required value="<%= u.getEmail() %>"/>
+                                                           placeholder="User email" name="uEmail"
+                                                           id="uEmail" required value=""/>
                                                 </div>
                                             </div>
 
@@ -95,8 +91,8 @@
                                                 <label class="col-sm-3 col-form-label form-label-title">Phone</label>
                                                 <div class="col-sm-9">
                                                     <input class="form-control" type="number"
-                                                           placeholder="User Phone" name="updated_uPhone"
-                                                           id="updated_uPhone" required value="<%= u.getPhone() %>"/>
+                                                           placeholder="User Phone" name="uPhone"
+                                                           id="uPhone" required value=""/>
                                                 </div>
                                             </div>
 
@@ -104,8 +100,8 @@
                                                 <label class="col-sm-3 col-form-label form-label-title">Address</label>
                                                 <div class="col-sm-9">
                                                     <textarea style="height: 150px;" class="form-control"
-                                                              placeholder="User address" name="updated_uAddress"
-                                                              id="updated_uAddress" required><%= u.getAddress() %></textarea>
+                                                              placeholder="User address" name="uAddress"
+                                                              id="uAddress" required></textarea>
                                                 </div>
                                             </div>
 
@@ -113,8 +109,8 @@
                                                 <label class="col-sm-3 col-form-label form-label-title">City</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control"
-                                                           placeholder="User name" name="updated_uCity"
-                                                           id="updated_uCity" required value="<%= u.getCity() %>"/>
+                                                           placeholder="User city" name="uCity"
+                                                           id="uCity" required value=""/>
                                                 </div>
                                             </div>
 
@@ -122,8 +118,8 @@
                                                 <label class="col-sm-3 col-form-label form-label-title">Postal Code</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control"
-                                                           placeholder="User name" name="updated_uPostalCode"
-                                                           id="updated_uPostalCode" required value="<%= u.getPost_code() %>"/>
+                                                           placeholder="User postal code" name="uPostalCode"
+                                                           id="uPostalCode" required value=""/>
                                                 </div>
                                             </div>
 
@@ -133,34 +129,36 @@
                                                         class="col-sm-3 col-form-label form-label-title">User Type</label>
                                                 <div class="col-sm-9">
                                                     <select class="js-example-basic-single w-100" name="catId"
-                                                            class="form-control" id="updated_uUserType">
+                                                            class="form-control" id="uUserType">
 
-                                                        <%
-                                                            String selected = "";
-                                                            String otherUserType = "";
-                                                                if (u.getUserType().toString().equals("USER")) {
-                                                                    selected = "USER";
-                                                                }else if (u.getUserType().toString().equals("ADMIN")) {
-                                                                    selected = "ADMIN";
-                                                                }
-
-                                                                if(selected.equals("ADMIN")){
-                                                                    otherUserType = "USER";
-                                                                } else if(selected.equals("USER")){
-                                                                    otherUserType = "ADMIN";
-                                                                }
-                                                        %>
-                                                        <option value="<%= u.getUserType() %>" <%= selected %>><%= u.getUserType() %></option>
-                                                        <option value="<%= otherUserType %>"><%= otherUserType %></option>
+                                                        <option value="USER">USER</option>
+                                                        <option value="ADMIN">ADMIN</option>
                                                     </select>
                                                 </div>
                                             </div>
 
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3 col-form-label form-label-title">Password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control"
+                                                           placeholder="User password" name="uPassword"
+                                                           id="uPassword" required value=""/>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3 col-form-label form-label-title">Repeat Password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control"
+                                                           placeholder="Repeat user password" name="uRePassword"
+                                                           id="uRePassword" required value=""/>
+                                                </div>
+                                            </div>
 
 
                                             <div class="row align-items-center">
                                                 <div class="mt-4 ">
-                                                    <a class="btn btn-solid update-user" type="submit">Update
+                                                    <a class="btn btn-solid add-new-user" type="submit">Add
                                                         User</a>
                                                 </div>
                                             </div>
@@ -189,46 +187,74 @@
 
 <script type="text/javascript">
 
-    document.getElementsByClassName('update-user').item(0).addEventListener('click', function () {
+    document.getElementsByClassName('add-new-user').item(0).addEventListener('click', function () {
         let uId = document.getElementById('uId').value;
-        let updated_uName = document.getElementById('updated_uName').value;
-        let updated_uEmail = document.getElementById('updated_uEmail').value;
-        let updated_uPhone = document.getElementById('updated_uPhone').value;
-        let updated_uAddress = document.getElementById('updated_uAddress').value;
-        let updated_uCity = document.getElementById('updated_uCity').value;
-        let updated_uPostalCode = document.getElementById('updated_uPostalCode').value;
-        let updated_uUserType = document.getElementById('updated_uUserType').value;
+        let uName = document.getElementById('uName').value;
+        let uEmail = document.getElementById('uEmail').value;
+        let uPhone = document.getElementById('uPhone').value;
+        let uAddress = document.getElementById('uAddress').value;
+        let uCity = document.getElementById('uCity').value;
+        let uPostalCode = document.getElementById('uPostalCode').value;
+        let uUserType = document.getElementById('uUserType').value;
+        let uPassword = document.getElementById('uPassword').value;
+        let uRePassword = document.getElementById('uRePassword').value;
 
 
         let formData = new FormData();
-        formData.append('updated_uName', updated_uName);
-        formData.append('updated_uEmail', updated_uEmail);
-        formData.append('updated_uPhone', updated_uPhone);
-        formData.append('updated_uAddress', updated_uAddress);
-        formData.append('updated_uCity', updated_uCity);
-        formData.append('updated_uPostalCode', updated_uPostalCode);
-        formData.append('updated_uUserType', updated_uUserType);
+        formData.append('uName', uName);
+        formData.append('uEmail', uEmail);
+        formData.append('uPhone', uPhone);
+        formData.append('uAddress', uAddress);
+        formData.append('uCity', uCity);
+        formData.append('uPostalCode', uPostalCode);
+        formData.append('uUserType', uUserType);
+        formData.append('uPassword', uPassword);
 
 
-        if (updated_uName.trim() === '' ||
-            updated_uEmail.trim() === '' ||
-            updated_uPhone.trim() === '' ||
-            updated_uAddress.trim() === '' ||
-            updated_uCity.trim() === '' ||
-            updated_uPostalCode.trim() === '') {
+        if (uName.trim() === '' ||
+            uEmail.trim() === '' ||
+            uPhone.trim() === '' ||
+            uAddress.trim() === '' ||
+            uCity.trim() === '' ||
+            uPostalCode.trim() === '' ||
+            uPassword.trim() === '' ||
+            uRePassword.trim() === '') {
             alert("Please fill in all fields.");
             return;
         }
 
+        // Password length validation
+        if (uPassword.length <= 4) {
+            alert("Password must be longer than 4 characters");
+            return;
+        }
 
-        fetch(`${BASE_URL}admin/update-user/` + pId, {
+        // // Password match validation
+        // if (!uPassword.equals(uRePassword)) {
+        //     alert("Password does not match");
+        //     return;
+        // }
+
+        // Email validation
+        if (!isValidEmail(uEmail)) {
+            alert("Invalid email address");
+            return;
+        }
+
+        function isValidEmail(uEmail) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(uEmail);
+        }
+
+
+        fetch(`${BASE_URL}admin/add-new-user/`, {
             method: 'POST',
             body: formData
         })
             .then(response => response.text())
             .then((text) => {
-                if (text === "User Updated Successfully!") {
-                    alert("User Updated Successfully!");
+                if (text === "User Saved Successfully!") {
+                    alert("User Saved Successfully!");
                     document.location.href = "${BASE_URL}admin/all-users";
                 } else {
                     alert(text);

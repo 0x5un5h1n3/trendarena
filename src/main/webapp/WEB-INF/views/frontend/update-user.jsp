@@ -6,6 +6,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.ox5un5h1n3.web.trendarena.util.Helper" %>
 <%@ page import="com.ox5un5h1n3.web.trendarena.entity.Product" %>
+<%@ page import="com.ox5un5h1n3.web.trendarena.entity.UserType" %>
+<%@ page import="com.ox5un5h1n3.web.trendarena.dao.UserDao" %>
 <%
     User user = (User) session.getAttribute("userLogged");
     if (user == null) {
@@ -19,12 +21,6 @@
     }
 %>
 
-<%
-    CategoryDao cdao = new CategoryDao(HibernateUtil.getSessionFactory());
-    List<Category> list = cdao.getCategories();
-
-    Map<String, Long> m = Helper.getCounts(HibernateUtil.getSessionFactory());
-%>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -59,12 +55,11 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-header-2">
-                                            <h5>Update Product Information</h5>
+                                            <h5>Update User Information</h5>
                                         </div>
 
                                         <%
-                                            Product p = (Product) request.getAttribute("product");
-                                            String imagePath = application.getContextPath() + "/img/products/" + p.getpPhoto();
+                                            User u = (User) request.getAttribute("user");
                                         %>
 
                                         <form action="${pageContext.request.contextPath}/admin/update-product/"
@@ -74,102 +69,99 @@
                                             <div class="mb-4 row align-items-center">
                                                 <div class="col-sm-9">
                                                     <input type="hidden" class="form-control"
-                                                           placeholder="Product id" name="pId" id="pId" required
-                                                           value="<%= p.getPid() %>"/>
+                                                           placeholder="User id" name="uId" id="uId" required
+                                                           value="<%= u.getId() %>"/>
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
                                                 <label class="form-label-title col-sm-3 mb-0">Name</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control"
-                                                           placeholder="Product name" name="updated_pName"
-                                                           id="updated_pName" required value="<%= p.getpName() %>"/>
+                                                           placeholder="User name" name="updated_uName"
+                                                           id="updated_uName" required value="<%= u.getName() %>"/>
                                                 </div>
                                             </div>
 
                                             <div class="mb-4 row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Description</label>
+                                                <label class="col-sm-3 col-form-label form-label-title">Email</label>
                                                 <div class="col-sm-9">
-                                                    <textarea style="height: 150px;" class="form-control"
-                                                              placeholder="Product description" name="updated_pDesc"
-                                                              id="updated_pDesc" required><%= p.getpDesc() %></textarea>
+                                                    <input type="text" class="form-control"
+                                                           placeholder="User email" name="updated_uEmail"
+                                                           id="updated_uEmail" required value="<%= u.getEmail() %>"/>
                                                 </div>
                                             </div>
 
                                             <div class="mb-4 row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Price</label>
+                                                <label class="col-sm-3 col-form-label form-label-title">Phone</label>
                                                 <div class="col-sm-9">
                                                     <input class="form-control" type="number"
-                                                           placeholder="Product Price" name="updated_pPrice"
-                                                           id="updated_pPrice" required value="<%= p.getpPrice() %>"/>
+                                                           placeholder="User Phone" name="updated_uPhone"
+                                                           id="updated_uPhone" required value="<%= u.getPhone() %>"/>
                                                 </div>
                                             </div>
 
                                             <div class="mb-4 row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Discount</label>
+                                                <label class="col-sm-3 col-form-label form-label-title">Address</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control"
-                                                           placeholder="Product discount" name="updated_pDiscount"
-                                                           id="updated_pDiscount" required
-                                                           value="<%= p.getpDiscount() %>"/>
+                                                    <textarea style="height: 150px;" class="form-control"
+                                                              placeholder="User address" name="updated_uAddress"
+                                                              id="updated_uAddress" required><%= u.getAddress() %></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="mb-4 row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Quantity</label>
+                                                <label class="col-sm-3 col-form-label form-label-title">City</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control"
-                                                           placeholder="Product quantity" name="updated_pQuantity"
-                                                           id="updated_pQuantity" required
-                                                           value="<%= p.getpQuantity() %>"/>
+                                                    <input type="text" class="form-control"
+                                                           placeholder="User city" name="updated_uCity"
+                                                           id="updated_uCity" required value="<%= u.getCity() %>"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-4 row align-items-center">
+                                                <label class="col-sm-3 col-form-label form-label-title">Postal Code</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="User postal code" name="updated_uPostalCode"
+                                                           id="updated_uPostalCode" required value="<%= u.getPost_code() %>"/>
                                                 </div>
                                             </div>
 
 
                                             <div class="mb-4 row align-items-center">
                                                 <label
-                                                        class="col-sm-3 col-form-label form-label-title">Category</label>
+                                                        class="col-sm-3 col-form-label form-label-title">User Type</label>
                                                 <div class="col-sm-9">
-                                                    <select class="js-example-basic-single w-100" name="catId"
-                                                            class="form-control" id="updated_pCategory">
+                                                    <select class="js-example-basic-single w-100" name="updated_uUserType"
+                                                            class="form-control" id="updated_uUserType">
 
-                                                        <%--                                                        <option selected><%= p.getCategory().getCategoryTitle()%></option>--%>
                                                         <%
-                                                            for (Category c : list) {
-                                                                String selected = "";
-                                                                if (p.getCategory().getCategoryTitle().equals(c.getCategoryTitle())) {
-                                                                    selected = "selected";
+                                                            String selected = "";
+                                                            String otherUserType = "";
+                                                                if (u.getUserType().toString().equals("USER")) {
+                                                                    selected = "USER";
+                                                                }else if (u.getUserType().toString().equals("ADMIN")) {
+                                                                    selected = "ADMIN";
+                                                                }
+
+                                                                if(selected.equals("ADMIN")){
+                                                                    otherUserType = "USER";
+                                                                } else if(selected.equals("USER")){
+                                                                    otherUserType = "ADMIN";
                                                                 }
                                                         %>
-                                                        <option value="<%= c.getCategoryId() %>" <%= selected %>><%= c.getCategoryTitle() %>
-                                                        </option>
-                                                        <%
-                                                            }
-                                                        %>
+                                                        <option value="<%= u.getUserType() %>" <%= selected %>><%= u.getUserType() %></option>
+                                                        <option value="<%= otherUserType %>"><%= otherUserType %></option>
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div class="row align-items-center">
-                                                <label class="col-sm-3 col-form-label form-label-title">Image</label>
-                                                <div class="col-sm-9">
-                                                    <div class="align-center">
-                                                        <img src="<%= imagePath %>" alt="<%= imagePath %>"
-                                                             style="width: 70%;"/>
-                                                    </div>
 
-
-                                                    <input class="form-control form-choose" type="file"
-                                                           id="updated_pPic" name="updated_pPic" required/>
-
-
-                                                </div>
-                                            </div>
 
                                             <div class="row align-items-center">
                                                 <div class="mt-4 ">
-                                                    <a class="btn btn-solid update-product" type="submit">Update
-                                                        Product</a>
+                                                    <a class="btn btn-solid update-user" type="submit">Update
+                                                        User</a>
                                                 </div>
                                             </div>
 
@@ -197,49 +189,47 @@
 
 <script type="text/javascript">
 
-    document.getElementsByClassName('update-product').item(0).addEventListener('click', function () {
-        let pId = document.getElementById('pId').value;
-        let updated_pName = document.getElementById('updated_pName').value;
-        let updated_pDesc = document.getElementById('updated_pDesc').value;
-        let updated_pPrice = document.getElementById('updated_pPrice').value;
-        let updated_pDiscount = document.getElementById('updated_pDiscount').value;
-        let updated_pQuantity = document.getElementById('updated_pQuantity').value;
-        let updated_pCategory = document.getElementById('updated_pCategory').value;
+    document.getElementsByClassName('update-user').item(0).addEventListener('click', function () {
+        let uId = document.getElementById('uId').value;
+        let updated_uName = document.getElementById('updated_uName').value;
+        let updated_uEmail = document.getElementById('updated_uEmail').value;
+        let updated_uPhone = document.getElementById('updated_uPhone').value;
+        let updated_uAddress = document.getElementById('updated_uAddress').value;
+        let updated_uCity = document.getElementById('updated_uCity').value;
+        let updated_uPostalCode = document.getElementById('updated_uPostalCode').value;
+        let updated_uUserType = document.getElementById('updated_uUserType').value;
 
-
-        let fileInput = document.getElementById('updated_pPic');
-        let updated_pPic = fileInput.files[0];
 
         let formData = new FormData();
-        formData.append('updated_pName', updated_pName);
-        formData.append('updated_pDesc', updated_pDesc);
-        formData.append('updated_pPrice', updated_pPrice);
-        formData.append('updated_pDiscount', updated_pDiscount);
-        formData.append('updated_pQuantity', updated_pQuantity);
-        formData.append('updated_pCategory', updated_pCategory);
-        // formData.append('updated_pPic', updated_pPic);
+        formData.append('updated_uName', updated_uName);
+        formData.append('updated_uEmail', updated_uEmail);
+        formData.append('updated_uPhone', updated_uPhone);
+        formData.append('updated_uAddress', updated_uAddress);
+        formData.append('updated_uCity', updated_uCity);
+        formData.append('updated_uPostalCode', updated_uPostalCode);
+        formData.append('updated_uUserType', updated_uUserType);
 
-        if (updated_pName.trim() === '' ||
-            updated_pDesc.trim() === '' ||
-            updated_pCategory.trim() === '') {
+
+        if (updated_uName.trim() === '' ||
+            updated_uEmail.trim() === '' ||
+            updated_uPhone.trim() === '' ||
+            updated_uAddress.trim() === '' ||
+            updated_uCity.trim() === '' ||
+            updated_uPostalCode.trim() === '') {
             alert("Please fill in all fields.");
             return;
         }
 
-// Append the image file to formData only if a file is selected
-        if (fileInput.files.length > 0) {
-            formData.append('updated_pPic', updated_pPic);
-        }
 
-        fetch(`${BASE_URL}admin/update-product/` + pId, {
+        fetch(`${BASE_URL}admin/update-user/` + uId, {
             method: 'POST',
             body: formData
         })
             .then(response => response.text())
             .then((text) => {
-                if (text === "Product Updated Successfully!") {
-                    alert("Product Updated Successfully!");
-                    document.location.href = "${BASE_URL}admin/products";
+                if (text === "User Updated Successfully!") {
+                    alert("User Updated Successfully!");
+                    document.location.href = "${BASE_URL}admin/all-users";
                 } else {
                     alert(text);
                 }

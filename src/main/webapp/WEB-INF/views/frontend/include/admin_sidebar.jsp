@@ -68,22 +68,6 @@
             </ul>
           </li>
 
-          <%--                            <li class="sidebar-list">--%>
-          <%--                                <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">--%>
-          <%--                                    <i class="ri-list-settings-line"></i>--%>
-          <%--                                    <span>Attributes</span>--%>
-          <%--                                </a>--%>
-          <%--                                <ul class="sidebar-submenu">--%>
-          <%--                                    <li>--%>
-          <%--                                        <a href="attributes.html">Attributes</a>--%>
-          <%--                                    </li>--%>
-
-          <%--                                    <li>--%>
-          <%--                                        <a href="add-new-attributes.html">Add Attributes</a>--%>
-          <%--                                    </li>--%>
-          <%--                                </ul>--%>
-          <%--                            </li>--%>
-
           <li class="sidebar-list">
             <a class="sidebar-link sidebar-title" href="javascript:void(0)">
               <i class="ri-user-3-line"></i>
@@ -91,10 +75,10 @@
             </a>
             <ul class="sidebar-submenu">
               <li>
-                <a href="all-users.html">All users</a>
+                <a href="${BASE_URL}admin/all-users">All users</a>
               </li>
               <li>
-                <a href="add-new-user.html">Add new user</a>
+                <a href="${BASE_URL}admin/add-new-user">Add new user</a>
               </li>
             </ul>
           </li>

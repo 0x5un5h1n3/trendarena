@@ -1,7 +1,7 @@
 package com.ox5un5h1n3.web.trendarena.controller;
 
 import com.ox5un5h1n3.web.trendarena.dao.ProductDao;
-import com.ox5un5h1n3.web.trendarena.entity.Product;
+import com.ox5un5h1n3.web.trendarena.dao.UserDao;
 import com.ox5un5h1n3.web.trendarena.util.HibernateUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -15,13 +15,13 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriBuilder;
 import org.glassfish.jersey.server.mvc.Viewable;
 
-@Path("/admin/delete-product/{id}")
-public class AdminDeleteProductController {
+@Path("/admin/delete-user/{id}")
+public class AdminDeleteUserController {
 
     @GET
     public Viewable index(){
 
-        return new Viewable("/frontend/products");
+        return new Viewable("/frontend/all-users");
     }
 
     @GET
@@ -30,17 +30,16 @@ public class AdminDeleteProductController {
 
         String contextPath = request.getContextPath();
         try {
-            ProductDao pdao = new ProductDao(HibernateUtil.getSessionFactory());
+            UserDao udao = new UserDao(HibernateUtil.getSessionFactory());
 
 
                     // Delete the product in the database
-                    pdao.deleteProduct(id);
+                    udao.deleteUser(id);
 
                     HttpSession session = request.getSession();
 
-                    session.setAttribute("message", "Product Deleted Successfully");
-            return Response.status(Response.Status.FOUND).location(UriBuilder.fromUri(contextPath+"/admin/products").build()).build();
-//                    return Response.ok().entity("Product Deleted Successfully!").build();
+                    session.setAttribute("message", "User Deleted Successfully");
+            return Response.status(Response.Status.FOUND).location(UriBuilder.fromUri(contextPath+"/admin/all-users").build()).build();
 
                 } catch (Exception e) {
                     e.printStackTrace();

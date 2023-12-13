@@ -1,6 +1,6 @@
-<%@page import="com.learn.mycart.entities.User" %>
+<%@page import="com.ox5un5h1n3.web.trendarena.entity.User" %>
 <%
-User user1=(User)session.getAttribute("current-user");
+User user1=(User)session.getAttribute("userLogged");
 %>
 <nav class="navbar navbar-expand-lg navbar-dark custom-bg">
   <div class="container">
@@ -50,7 +50,7 @@ User user1=(User)session.getAttribute("current-user");
     	 %>
     	 
     	 <li class="nav-item active">
-        <a class="nav-link" href="<%=user1.getUserType().equals("admin")?"admin.jsp":"normal.jsp" %>"><%=user1.getUserName() %> </a>
+        <a class="nav-link" href="<%=user1.getUserType().equals("admin")?"admin.jsp":"normal.jsp" %>"><%=user1.getName() %> </a>
      </li>
      <li class="nav-item active">
         <a class="nav-link" href="LogoutServlet">Logout</a>

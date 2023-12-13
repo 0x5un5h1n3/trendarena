@@ -1,5 +1,5 @@
 <%@taglib prefix="layout" uri="http://callidora.lk/jsp/template-inheritance" %>
-<layout:extends name="base">
+<layout:extends name="other-base">
     <layout:put block="contents">
         <!-- register section start -->
         <section class="log-in-section section-b-space">

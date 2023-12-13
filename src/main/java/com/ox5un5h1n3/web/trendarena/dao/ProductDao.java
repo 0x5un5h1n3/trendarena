@@ -78,6 +78,17 @@ public class ProductDao {
         return product;
     }
 
+    //get all products of given category
+    public List<Product> getAllProductsById(int cid)
+    {
+        Session s=	this.factory.openSession();
+        Query query =s.createQuery("from Product as p where p.category.categoryId=:id");
+        query.setParameter("id", cid);
+        List<Product> list=query.list();
+        return  list;
+
+    }
+
     public void updateProduct(Product product) {
         boolean b = false;
         Transaction tx = null;

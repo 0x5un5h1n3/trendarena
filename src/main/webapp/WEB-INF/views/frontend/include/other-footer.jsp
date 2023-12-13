@@ -155,7 +155,7 @@
 
         <div class="sub-footer sub-footer-lite section-b-space section-t-space">
             <div class="left-footer">
-                <p>&copy;TrendArena. All rigths reserved.</p>
+                <p>&copy;TrendArena. All rights reserved.</p>
             </div>
 
 <%--            <ul class="payment-box">--%>

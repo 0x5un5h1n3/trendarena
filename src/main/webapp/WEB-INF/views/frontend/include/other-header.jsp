@@ -131,13 +131,13 @@
                                 </li>
 
                                 <li class="right-side">
-                                    <a href="contact-us.html" class="delivery-login-box">
+                                    <a href="${BASE_URL}contact-us" class="delivery-login-box">
                                         <div class="delivery-icon">
                                             <i data-feather="phone-call"></i>
                                         </div>
                                         <div class="delivery-detail">
                                             <h6>24/7 Delivery</h6>
-                                            <h5>+91 888 104 2340</h5>
+                                            <h5>+123 456 7890</h5>
                                         </div>
                                     </a>
                                 </li>
@@ -202,7 +202,7 @@
 <div class="mobile-menu d-md-none d-block mobile-cart">
     <ul>
         <li class="active">
-            <a href="index.html">
+            <a href="${BASE_URL}">
                 <i class="iconly-Home icli"></i>
                 <span>Home</span>
             </a>

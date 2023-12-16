@@ -6,13 +6,11 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Context;
 import org.glassfish.jersey.server.mvc.Viewable;
 
-@Path("/view-product")
-public class ViewProductController {
+@Path("/contact-us")
+public class ContactUsController {
 
     @GET
-    public Viewable index(@Context HttpServletRequest request) {
-
-
-        return new Viewable("/frontend/view-product");
+    public Viewable index() {
+        return new Viewable("/frontend/contact-us");
     }
 }

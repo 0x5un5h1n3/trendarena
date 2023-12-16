@@ -16,13 +16,13 @@
                             </a>
                         </li>
                         <li class="light-bg">
-                            <a href="https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                            <a href="https://accounts.google.com/"
                                class="footer-link-color">
                                 <i class="fab fa-google"></i>
                             </a>
                         </li>
                         <li class="light-bg">
-                            <a href="https://twitter.com/i/flow/login" class="footer-link-color">
+                            <a href="https://twitter.com/" class="footer-link-color">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="light-bg">
-                            <a href="https://in.pinterest.com/" class="footer-link-color">
+                            <a href="https://www.pinterest.com/" class="footer-link-color">
                                 <i class="fab fa-pinterest-p"></i>
                             </a>
                         </li>

@@ -82,8 +82,8 @@
             </div>
 
             <div class="card-footer text-center">
-              <button class="btn custom-bg text-white" onclick="add_to_cart(<%=p.getPid() %>,'<%=p.getpName() %>','<%=p.getPriceAfterApplyDiscount() %>')">Add to Cart</button>
-              <button class="btn btn-outline-success">&#x24; <%=p.getPriceAfterApplyDiscount()%>/- <span class="text-secondary discount-label">  &#x24;<%=p.getpPrice() %> <%=p.getpDiscount() %>%</span></button>
+              <button class="btn custom-bg text-white" onclick="add_to_cart(<%=p.getPid() %>,'<%=p.getpName() %>','<%=p.getDiscountedPrice() %>')">Add to Cart</button>
+              <button class="btn btn-outline-success">&#x24; <%=p.getDiscountedPrice()%>/- <span class="text-secondary discount-label">  &#x24;<%=p.getpPrice() %> <%=p.getpDiscount() %>%</span></button>
             </div>
 
           </div>

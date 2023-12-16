@@ -127,7 +127,7 @@
                                     <div class="onhover-dropdown header-badge">
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                            <span class="position-absolute top-0 start-100 translate-middle badge cart-items">0
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
@@ -180,8 +180,8 @@
                                             </div>
 
                                             <div class="button-group">
-                                                <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
-                                                <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
+                                                <a href="${BASE_URL}cart" class="btn btn-sm cart-button">View Cart</a>
+                                                <a href="${BASE_URL}checkout" class="btn btn-sm cart-button theme-bg-color
                                                     text-white">Checkout</a>
                                             </div>
                                         </div>

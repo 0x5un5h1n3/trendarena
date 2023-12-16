@@ -10,17 +10,13 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Context;
 import org.glassfish.jersey.server.mvc.Viewable;
 
-@Path("/view-product/{id}")
-public class ViewProductController {
+@Path("/cart")
+public class CartController {
 
     @GET
-    public Viewable index(@PathParam("id") int id, @Context HttpServletRequest request){
+    public Viewable index(){
 
-        ProductDao dao = new ProductDao(HibernateUtil.getSessionFactory());
-        Product product = dao.getProductById(id);
 
-        request.setAttribute("product", product);
-
-        return new Viewable("/frontend/view-product");
+        return new Viewable("/frontend/cart");
     }
 }

@@ -1,17 +1,25 @@
 package com.ox5un5h1n3.web.trendarena.controller;
 
+import com.ox5un5h1n3.web.trendarena.dao.ProductDao;
+import com.ox5un5h1n3.web.trendarena.entity.Product;
+import com.ox5un5h1n3.web.trendarena.util.HibernateUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Context;
 import org.glassfish.jersey.server.mvc.Viewable;
 
-@Path("/view-product")
+@Path("/view-product/{id}")
 public class ViewProductController {
 
     @GET
-    public Viewable index(@Context HttpServletRequest request) {
+    public Viewable index(@PathParam("id") int id, @Context HttpServletRequest request){
 
+        ProductDao dao = new ProductDao(HibernateUtil.getSessionFactory());
+        Product product = dao.getProductById(id);
+
+        request.setAttribute("product", product);
 
         return new Viewable("/frontend/view-product");
     }

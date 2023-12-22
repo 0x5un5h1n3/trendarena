@@ -135,81 +135,60 @@
                             <h3>Trending Products</h3>
 
                             <ul class="product-list product-right-sidebar border-0 p-0">
+
+                                <%
+                                    int counter = 0;
+                                    for(Product trp:list) {
+                                        if (counter == 4) {
+                                            break;
+                                        }
+                                %>
                                 <li>
                                     <div class="offer-product">
-                                        <a href="product-left-thumbnail.html" class="offer-image">
-                                            <img src="${BASE_URL}assets/images/vegetable/product/23.png"
+                                        <a href="${BASE_URL}view-product/<%= trp.getPid() %>" class="offer-image">
+                                            <img src="${BASE_URL}img/products/<%= trp.getpPhoto()%>"
                                                  class="img-fluid blur-up lazyload" alt="">
                                         </a>
 
                                         <div class="offer-detail">
                                             <div>
-                                                <a href="product-left-thumbnail.html">
-                                                    <h6 class="name">Meatigo Premium Goat Curry</h6>
+                                                <a href="${BASE_URL}view-product/<%= trp.getPid() %>">
+                                                    <h6 class="name"><%= trp.getpName()%></h6>
                                                 </a>
                                                 <span>450 G</span>
-                                                <h6 class="price theme-color">$ 70.00</h6>
+                                                <h6 class="price theme-color">$ <%= trp.getDiscountedPrice()%></h6>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
 
-                                <li>
-                                    <div class="offer-product">
-                                        <a href="product-left-thumbnail.html" class="offer-image">
-                                            <img src="${BASE_URL}assets/images/vegetable/product/24.png"
-                                                 class="blur-up lazyload" alt="">
-                                        </a>
+                                <%
+                                        counter++;
+                                    }
+                                    if(list.isEmpty()) {
+                                        out.println("<h3>No trending products</h3>");
+                                    }
 
-                                        <div class="offer-detail">
-                                            <div>
-                                                <a href="product-left-thumbnail.html">
-                                                    <h6 class="name">Dates Medjoul Premium Imported</h6>
-                                                </a>
-                                                <span>450 G</span>
-                                                <h6 class="price theme-color">$ 40.00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                %>
 
-                                <li>
-                                    <div class="offer-product">
-                                        <a href="product-left-thumbnail.html" class="offer-image">
-                                            <img src="${BASE_URL}assets/images/vegetable/product/25.png"
-                                                 class="blur-up lazyload" alt="">
-                                        </a>
+<%--                                <li class="mb-0">--%>
+<%--                                    <div class="offer-product">--%>
+<%--                                        <a href="product-left-thumbnail.html" class="offer-image">--%>
+<%--                                            <img src="${BASE_URL}assets/images/vegetable/product/26.png"--%>
+<%--                                                 class="blur-up lazyload" alt="">--%>
+<%--                                        </a>--%>
 
-                                        <div class="offer-detail">
-                                            <div>
-                                                <a href="product-left-thumbnail.html">
-                                                    <h6 class="name">Good Life Walnut Kernels</h6>
-                                                </a>
-                                                <span>200 G</span>
-                                                <h6 class="price theme-color">$ 52.00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="mb-0">
-                                    <div class="offer-product">
-                                        <a href="product-left-thumbnail.html" class="offer-image">
-                                            <img src="${BASE_URL}assets/images/vegetable/product/26.png"
-                                                 class="blur-up lazyload" alt="">
-                                        </a>
-
-                                        <div class="offer-detail">
-                                            <div>
-                                                <a href="product-left-thumbnail.html">
-                                                    <h6 class="name">Apple Red Premium Imported</h6>
-                                                </a>
-                                                <span>1 KG</span>
-                                                <h6 class="price theme-color">$ 80.00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+<%--                                        <div class="offer-detail">--%>
+<%--                                            <div>--%>
+<%--                                                <a href="product-left-thumbnail.html">--%>
+<%--                                                    <h6 class="name">Apple Red Premium Imported</h6>--%>
+<%--                                                </a>--%>
+<%--                                                <span>1 KG</span>--%>
+<%--                                                <h6 class="price theme-color">$ 80.00</h6>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
                             </ul>
                         </div>
                     </div>
@@ -225,7 +204,7 @@
                                     <h3 class="text-uppercase fw-normal"><span
                                             class="theme-color fw-bold">Freshes</span> Products</h3>
                                     <h3 class="fw-light">every hour</h3>
-                                    <button onclick="location.href = 'shop-left-sidebar.html';"
+                                    <button onclick="location.href = '${BASE_URL}';"
                                             class="btn btn-animation btn-md fw-bold mend-auto">Shop Now <i
                                             class="fa-solid fa-arrow-right icon"></i></button>
                                 </div>
@@ -252,13 +231,14 @@
 
                 <div class="slider-6 img-slider">
                     <%
-                        for (Product plist : list) {
+                        for(Product plist:list)
+                        {
                     %>
 
                     <div>
                         <div class="product-box-5 wow fadeInUp">
                             <div class="product-image">
-                                <a href="product-left-thumbnail.html">
+                                <a href="${BASE_URL}view-product/<%= plist.getPid() %>">
                                     <img src="${BASE_URL}img/products/<%= plist.getpPhoto()%>"
                                          class="img-fluid blur-up lazyload bg-img" alt="">
                                 </a>
@@ -270,10 +250,11 @@
 
                                 <ul class="product-option">
                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                        <a href="<%= plist.getpPhoto()%>" data-bs-toggle="modal" data-bs-target="#view"
-                                           data-product-name="<%= p.getpName()%>">
-                                            <i data-feather="eye"></i>
-                                        </a>
+                                        <%--                                                <a href="${BASE_URL}/view-product/<%= p.getPid() %>" data-bs-toggle="modal" data-bs-target="#view" data-product-name="<%= p.getpName()%>">--%>
+                                        <%--                                                    <i data-feather="eye"></i>--%>
+                                        </a><a href="${BASE_URL}view-product/<%= plist.getPid() %>">
+                                        <i data-feather="eye"></i>
+                                    </a>
 
                                     </li>
 
@@ -285,8 +266,7 @@
                                     <%--                                            </li>--%>
 
                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">
-                                        <a href="" ${BASE_URL}?product=<%=plist.getpName() %>"" data-bs-toggle="modal"
-                                           data-bs-target="#add-to-cart">
+                                        <a onclick="add_to_cart(<%=plist.getPid() %>,'<%=plist.getpName() %>','<%=plist.getDiscountedPrice() %>')">
                                             <i data-feather="shopping-cart"></i>
                                         </a>
                                     </li>
@@ -302,24 +282,23 @@
 
                             <div class="product-detail">
                                 <a href="product-left-thumbnail.html">
-                                    <h5 class="name"><%=plist.getpName() %>
-                                    </h5>
+                                    <h5 class="name"><%=plist.getpName() %></h5>
                                 </a>
 
                                 <h5 class="sold text-content">
                                     <span class="theme-color price">$<%=plist.getDiscountedPrice() %></span>
-                                    <del>$<%=plist.getpPrice() %>
-                                    </del>
+                                    <del>$<%=plist.getpPrice() %></del>
                                 </h5>
                             </div>
                         </div>
                     </div>
 
 
+
                     <%
                         }
-                        if (list.isEmpty()) {
-                            out.println("<h3>No item in this category</h3>");
+                        if(list.isEmpty()) {
+                            out.println("<h3>No Related Products</h3>");
                         }
                     %>
                 </div>

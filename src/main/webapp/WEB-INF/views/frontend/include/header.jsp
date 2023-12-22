@@ -47,6 +47,17 @@
 
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css" href="${BASE_URL}assets/css/style.css">
+
+
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--%>
+    <!-- javscript -->
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"></script>
+<%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>--%>
+<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--%>
+
 </head>
 
 
@@ -118,67 +129,77 @@
                                 </li>
                                 <li class="right-side">
                                     <div class="onhover-dropdown header-badge">
-                                        <button type="button" class="btn p-0 position-relative header-wishlist">
+                                        <%--                                        <a data-toggle="modal" data-target="#cart">--%>
+                                        <%--                                            <button type="button" class="btn p-0 position-relative header-wishlist" id="cart" >--%>
+                                        <%--                                            <i data-feather="shopping-cart"></i>--%>
+                                        <%--                                            <span class="position-absolute top-0 start-100 translate-middle badge cart-items">0--%>
+                                        <%--                                                    <span class="visually-hidden">unread messages</span>--%>
+                                        <%--                                                </span>--%>
+                                        <%--                                        </button>--%>
+                                        <%--                                        </a>--%>
+
+                                        <button type="button" class="btn p-0 position-relative header-wishlist"
+                                                data-bs-toggle="modal" data-bs-target="#cart">
                                             <i data-feather="shopping-cart"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge cart-items">0
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
+        <span class="visually-hidden">unread messages</span>
+    </span>
                                         </button>
 
-                                        <div class="onhover-div">
-                                            <ul class="cart-list">
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
-                                                            <img src="../assets/images/vegetable/product/1.png"
-                                                                 class="blur-up lazyload" alt="">
-                                                        </a>
+                                        <%--                                        <div class="onhover-div">--%>
+                                        <%--                                            <ul class="cart-list">--%>
+                                        <%--                                                <li class="product-box-contain">--%>
+                                        <%--                                                    <div class="drop-cart">--%>
+                                        <%--                                                        <a href="product-left-thumbnail.html" class="drop-image">--%>
+                                        <%--                                                            <img src="../assets/images/vegetable/product/1.png"--%>
+                                        <%--                                                                 class="blur-up lazyload" alt="">--%>
+                                        <%--                                                        </a>--%>
 
-                                                        <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
-                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $80.58</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                        <%--                                                        <div class="drop-contain">--%>
+                                        <%--                                                            <a href="product-left-thumbnail.html">--%>
+                                        <%--                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>--%>
+                                        <%--                                                            </a>--%>
+                                        <%--                                                            <h6><span>1 x</span> $80.58</h6>--%>
+                                        <%--                                                            <button class="close-button close_button">--%>
+                                        <%--                                                                <i class="fa-solid fa-xmark"></i>--%>
+                                        <%--                                                            </button>--%>
+                                        <%--                                                        </div>--%>
+                                        <%--                                                    </div>--%>
+                                        <%--                                                </li>--%>
 
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
-                                                            <img src="../assets/images/vegetable/product/2.png"
-                                                                 class="blur-up lazyload" alt="">
-                                                        </a>
+                                        <%--                                                <li class="product-box-contain">--%>
+                                        <%--                                                    <div class="drop-cart">--%>
+                                        <%--                                                        <a href="product-left-thumbnail.html" class="drop-image">--%>
+                                        <%--                                                            <img src="../assets/images/vegetable/product/2.png"--%>
+                                        <%--                                                                 class="blur-up lazyload" alt="">--%>
+                                        <%--                                                        </a>--%>
 
-                                                        <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
-                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                </h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $25.68</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                        <%--                                                        <div class="drop-contain">--%>
+                                        <%--                                                            <a href="product-left-thumbnail.html">--%>
+                                        <%--                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g--%>
+                                        <%--                                                                </h5>--%>
+                                        <%--                                                            </a>--%>
+                                        <%--                                                            <h6><span>1 x</span> $25.68</h6>--%>
+                                        <%--                                                            <button class="close-button close_button">--%>
+                                        <%--                                                                <i class="fa-solid fa-xmark"></i>--%>
+                                        <%--                                                            </button>--%>
+                                        <%--                                                        </div>--%>
+                                        <%--                                                    </div>--%>
+                                        <%--                                                </li>--%>
+                                        <%--                                            </ul>--%>
 
-                                            <div class="price-box">
-                                                <h5>Total :</h5>
-                                                <h4 class="theme-color fw-bold">$106.58</h4>
-                                            </div>
+                                        <%--                                            <div class="price-box">--%>
+                                        <%--                                                <h5>Total :</h5>--%>
+                                        <%--                                                <h4 class="theme-color fw-bold">$106.58</h4>--%>
+                                        <%--                                            </div>--%>
 
-                                            <div class="button-group">
-                                                <a href="${BASE_URL}cart" class="btn btn-sm cart-button">View Cart</a>
-                                                <a href="${BASE_URL}checkout" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <%--                                            <div class="button-group">--%>
+                                        <%--                                                <a href="${BASE_URL}cart" class="btn btn-sm cart-button">View Cart</a>--%>
+                                        <%--                                                <a href="${BASE_URL}checkout" class="btn btn-sm cart-button theme-bg-color--%>
+                                        <%--                                                    text-white">Checkout</a>--%>
+                                        <%--                                            </div>--%>
+                                        <%--                                        </div>--%>
+                                        <%--                                    </div>--%>
                                 </li>
 
 
@@ -207,7 +228,7 @@
                                             <c:choose>
                                                 <c:when test="${sessionScope.userLogged != null}">
                                                     <li class="product-box-contain">
-<%--                                                        <i></i>--%>
+                                                            <%--                                                        <i></i>--%>
                                                         <a href="${BASE_URL}logout">Logout</a></li>
                                                     <li class="product-box-contain">
                                                         <a href="${BASE_URL}forgot-password">Forgot Password</a>

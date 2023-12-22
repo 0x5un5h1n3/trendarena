@@ -68,9 +68,7 @@
                             <div>
                                 <div class="timer-notification">
                                     <h6><strong class="me-1">Welcome to TrendArena!</strong>Wrap new offers/gift
-                                        every signle day on Weekends.<strong class="ms-1">New Coupon Code: Fast024
-                                        </strong>
-
+                                        every single day on Weekends.
                                     </h6>
                                 </div>
                             </div>
@@ -78,7 +76,7 @@
                             <div>
                                 <div class="timer-notification">
                                     <h6>Something you love is now on sale!
-                                        <a href="shop-left-sidebar.html" class="text-white">Buy Now
+                                        <a href="${BASE_URL}" class="text-white">Buy Now
                                             !</a>
                                     </h6>
                                 </div>

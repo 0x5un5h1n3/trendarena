@@ -56,19 +56,19 @@
           </div>
           <ul class="profile-dropdown onhover-show-div">
             <li>
-              <a href="all-users.html">
+              <a href="${BASE_URL}admin/all-users">
                 <i data-feather="users"></i>
                 <span>Users</span>
               </a>
             </li>
             <li>
-              <a href="order-list.html">
+              <a href="${BASE_URL}admin/order-list">
                 <i data-feather="archive"></i>
                 <span>Orders</span>
               </a>
             </li>
             <li>
-              <a href="profile-setting.html">
+              <a href="${BASE_URL}admin/profile-setting">
                 <i data-feather="settings"></i>
                 <span>Settings</span>
               </a>

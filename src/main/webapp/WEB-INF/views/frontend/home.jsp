@@ -126,7 +126,7 @@
                             <div>
                                 <div class="product-box-5 wow fadeInUp">
                                     <div class="product-image">
-                                        <a href="${BASE_URL}view-product/<%= p.getPid() %>"">
+                                        <a href="${BASE_URL}view-product/<%= p.getPid() %>">
                                             <img src="${BASE_URL}img/products/<%= p.getpPhoto()%>"
                                                  class="img-fluid blur-up lazyload bg-img" alt="">
                                         </a>
@@ -401,149 +401,150 @@
 <div class="bg-overlay"></div>
 <!-- Bg overlay End -->
 
+
+<!-- Modal -->
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Your cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="cart-items"></span>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-body">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary checkout-btn" onclick="gotoCheckout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
-    function add_to_cart(pid,pname,price){
+    function add_to_cart(pid, pname, price) {
 
-
-        let cart=localStorage.getItem("cart");
-        if(cart==null){
-
-            //no  cart yet
-            let products=[];
-            let product={productId : pid , productName : pname, productQuantity : 1, productPrice : price}
+        let cart = localStorage.getItem("cart");
+        if (cart == null) {
+            // no cart yet
+            let products = [];
+            let product = {
+                productId: pid,
+                productName: pname,
+                productQuantity: 1,
+                productPrice: price
+            };
             products.push(product);
-            localStorage.setItem("cart",JSON.stringify(products));
-            console.log("Product is added for the first time")
-        }
-        else{
-            //Already available
-            let pcart=JSON.parse(cart);
+            localStorage.setItem("cart", JSON.stringify(products));
+            alert("Product is added for the first time");
+            console.log("Product is added for the first time");
+        } else {
+            // Already available
+            let pcart = JSON.parse(cart);
 
-
-            let oldProduct=pcart.find((item)=> item.productId == pid)
-            console.log(oldProduct)
-            if(oldProduct)
-            {
-                //Increase the quantity
-                oldProduct.productQuantity=oldProduct.productQuantity+1
-                pcart.map((item)=>{
-                    if(item.productId ==  oldProduct.productId)
-                    {
-                        item.productQuantity=oldProduct.productQuantity;
+            let oldProduct = pcart.find((item) => item.productId === pid);
+            console.log(oldProduct);
+            if (oldProduct) {
+                // Increase the quantity
+                oldProduct.productQuantity = oldProduct.productQuantity + 1;
+                pcart.map((item) => {
+                    if (item.productId == oldProduct.productId) {
+                        item.productQuantity = oldProduct.productQuantity;
                     }
-                })
-                localStorage.setItem("cart",JSON.stringify(pcart));
+                });
+                localStorage.setItem("cart", JSON.stringify(pcart));
+            } else {
+                // Add product to cart
+                let product = {
+                    productId: pid,
+                    productName: pname,
+                    productQuantity: 1,
+                    productPrice: price
+                };
+                pcart.push(product);
+                localStorage.setItem("cart", JSON.stringify(pcart));
+                console.log("Product id added");
+                alert("Product id added");
             }
-            else{
-                //Add product to cart
-                let product={productId : pid , productName:pname,productQuantity:1,productPrice:price}
-                pcart.push(product)
-                localStorage.setItem("cart",JSON.stringify(pcart));
-                console.log("Product id added")
-            }
-
-
-
         }
         updateCart();
-
-
     }
 
-
-
-
-    //update cart
-
-
-    function updateCart()
-    {
-
-        let cartString=localStorage.getItem("cart");
-        let cart=JSON.parse(cartString);
-        if(cart==null || cart.length==0)
-        {
-            console.log("Cart is empty")
-            $(".cart-items").html("0");
-            $(".cart-body").html("<h3>Cart does not have any items </h3>")
-            $(".checkout-btn").attr('disabled',true);
-
-        }
-        else{
-            //there is something
+    function updateCart() {
+        let cartString = localStorage.getItem("cart");
+        let cart = JSON.parse(cartString);
+        if (cart == null || cart.length == 0) {
+            console.log("Cart is empty");
+            alert("Cart is empty");
+            $(".cart-items").text("0");
+            $(".cart-body").html("<h3>Cart does not have any items </h3>");
+            $(".checkout-btn").attr("disabled", true);
+        } else {
+            // there is something
             console.log(cart);
-            $(".cart-items").html( `( ${cart.length} )` );
-            let table=`
-		<table class='table'>
-		<thead class='thead-light'>
-		<tr>
-		<th>Item Name </th>
-		<th>Price </th>
-		<th>Quantity </th>
-		<th>Total Price</th>
-		<th>Action </th>
-		</tr>
-		</thead>
+            $(".cart-items").text(`( ${cart.length} )`);
+            let table = `
+      <table class='table'>
+        <thead class='thead-light'>
+          <tr>
+            <th>Item Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+      `;
 
-		`;
-            let totalPrice=0;
+            let totalPrice = 0;
 
             cart.map((item) => {
+                table += `
+        <tr>
+          <td>${item.productName}</td>
+          <td>${item.productPrice}</td>
+          <td>${item.productQuantity}</td>
+          <td>${item.productQuantity * item.productPrice}</td>
+          <td><button onclick="deleteItemFromCart(${item.productId})" class="btn btn-danger btn-sm">Remove</button></td>
+        </tr>
+      `;
+                totalPrice += item.productPrice * item.productQuantity;
+            });
 
-                table +=`
+            table = table + `
+      <tr>
+        <td colspan='5' class='text-right font-weight-bold m-5'> Total Price: ${totalPrice}</td>
+      </tr>
+    </table>`;
 
-				<tr>
-
-				<td>${item.productName}</td>
-				<td>${item.productPrice}</td>
-				<td>${item.productQuantity}</td>
-				<td>${item.productQuantity * item.productPrice}</td>
-				<td> <button onclick="deleteItemFromCart(${item.productId})" class="btn btn-danger btn-sm">Remove</button></td>
-
-				</tr>
-			`
-
-                totalPrice+=item.productPrice*item.productQuantity;
-            })
-
-
-
-            table= table + `
-		<tr><td colspan='5' class='text-right font-weight-bold m-5'> Total Price: ${totalPrice}</td></tr>
-
-		</table>`
-
-            $(".cart-body").html(table)
-            $(".checkout-btn").attr('disabled',false);
-            console.log("removed")
-
-
-
-
+            $(".cart-body").html(table);
+            $(".checkout-btn").attr("disabled", false);
+            console.log("updated");
         }
-
     }
 
+    function deleteItemFromCart(pid) {
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        let newcart = cart.filter((item) => item.productId != pid);
 
-    function deleteItemFromCart(pid)
-    {
-        let cart=JSON.parse(localStorage.getItem('cart'));
-        let newcart=cart.filter((item)=>item.productId!=pid);
-
-        localStorage.setItem('cart',JSON.stringify(newcart))
+        localStorage.setItem("cart", JSON.stringify(newcart));
         updateCart();
-
     }
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         updateCart();
-    })
+    });
 
-
-    function gotoCheckout(){
-        window.location="checkout.jsp"
+    function gotoCheckout() {
+        window.location = "checkout.jsp";
     }
+
 
 
 </script>

@@ -9,17 +9,16 @@
 <html lang="en">
 
 <%
-    String cat=request.getParameter("category");
+    String cat = request.getParameter("category");
 
     ProductDao dao = new ProductDao(HibernateUtil.getSessionFactory());
-    List<Product> list=null;
+    List<Product> list = null;
 
-    if(cat==null ||cat.trim().equals("all")) {
-        list =dao.getAllProducts();
-    }
-    else{
-        int cid=Integer.parseInt(cat.trim());
-        list=dao.getAllProductsById(cid);
+    if (cat == null || cat.trim().equals("all")) {
+        list = dao.getAllProducts();
+    } else {
+        int cid = Integer.parseInt(cat.trim());
+        list = dao.getAllProductsById(cid);
     }
 
     CategoryDao cdao = new CategoryDao(HibernateUtil.getSessionFactory());
@@ -60,10 +59,14 @@
                     <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="right-box-contain">
                             <h6 class="offer-top"><%=p.getpDiscount()%>% Off</h6>
-                            <h2 class="name"><%=p.getpName()%></h2>
+                            <h2 class="name"><%=p.getpName()%>
+                            </h2>
                             <div class="price-rating">
-                                <h3 class="theme-color price">$<%=p.getDiscountedPrice()%> <del class="text-content">$<%=p.getpPrice()%></del> <span
-                                        class="offer theme-color">(<%=p.getpDiscount()%>% off)</span></h3>
+                                <h3 class="theme-color price">$<%=p.getDiscountedPrice()%>
+                                    <del class="text-content">$<%=p.getpPrice()%>
+                                    </del>
+                                    <span
+                                            class="offer theme-color">(<%=p.getpDiscount()%>% off)</span></h3>
 
                             </div>
 
@@ -74,22 +77,39 @@
 
 
                             <div class="note-box product-packege">
+                                <%--                                <div class="cart_qty qty-box product-qty">--%>
+                                <%--                                    <div class="input-group">--%>
+                                <%--                                        <button type="button" class="qty-right-plus" data-type="plus" data-field="">--%>
+                                <%--                                            <i class="fa fa-plus" aria-hidden="true"></i>--%>
+                                <%--                                        </button>--%>
+                                <%--                                        <input class="form-control input-number qty-input" type="text"--%>
+                                <%--                                               name="quantity" value="1">--%>
+                                <%--                                        <button type="button" class="qty-left-minus" data-type="minus"--%>
+                                <%--                                                data-field="">--%>
+                                <%--                                            <i class="fa fa-minus" aria-hidden="true"></i>--%>
+                                <%--                                        </button>--%>
+                                <%--                                    </div>--%>
+                                <%--                                </div>--%>
+
+
                                 <div class="cart_qty qty-box product-qty">
-                                    <div class="input-group">
-                                        <button type="button" class="qty-right-plus" data-type="plus" data-field="">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <div class="input-group bg-white">
+                                        <button type="button" class="qty-left-minus bg-white" data-type="minus"
+                                                data-field="">
+                                            <i class="fa fa-minus" aria-hidden="true"></i>
                                         </button>
                                         <input class="form-control input-number qty-input" type="text"
                                                name="quantity" value="1">
-                                        <button type="button" class="qty-left-minus" data-type="minus"
+                                        <button type="button" class="qty-right-plus bg-white" data-type="plus"
                                                 data-field="">
-                                            <i class="fa fa-minus" aria-hidden="true"></i>
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
 
                                 <button onclick="location.href = 'cart.html';"
-                                        class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart</button>
+                                        class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart
+                                </button>
                             </div>
 
                             <div class="buy-box">
@@ -230,11 +250,9 @@
             <div class="col-xxl-12 ratio_110">
 
 
-
                 <div class="slider-6 img-slider">
                     <%
-                        for(Product plist:list)
-                        {
+                        for (Product plist : list) {
                     %>
 
                     <div>
@@ -252,7 +270,8 @@
 
                                 <ul class="product-option">
                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                        <a href="<%= plist.getpPhoto()%>" data-bs-toggle="modal" data-bs-target="#view" data-product-name="<%= p.getpName()%>">
+                                        <a href="<%= plist.getpPhoto()%>" data-bs-toggle="modal" data-bs-target="#view"
+                                           data-product-name="<%= p.getpName()%>">
                                             <i data-feather="eye"></i>
                                         </a>
 
@@ -266,7 +285,8 @@
                                     <%--                                            </li>--%>
 
                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">
-                                        <a href=""${BASE_URL}?product=<%=plist.getpName() %>"" data-bs-toggle="modal" data-bs-target="#add-to-cart">
+                                        <a href="" ${BASE_URL}?product=<%=plist.getpName() %>"" data-bs-toggle="modal"
+                                           data-bs-target="#add-to-cart">
                                             <i data-feather="shopping-cart"></i>
                                         </a>
                                     </li>
@@ -282,22 +302,23 @@
 
                             <div class="product-detail">
                                 <a href="product-left-thumbnail.html">
-                                    <h5 class="name"><%=plist.getpName() %></h5>
+                                    <h5 class="name"><%=plist.getpName() %>
+                                    </h5>
                                 </a>
 
                                 <h5 class="sold text-content">
                                     <span class="theme-color price">$<%=plist.getDiscountedPrice() %></span>
-                                    <del>$<%=plist.getpPrice() %></del>
+                                    <del>$<%=plist.getpPrice() %>
+                                    </del>
                                 </h5>
                             </div>
                         </div>
                     </div>
 
 
-
                     <%
                         }
-                        if(list.isEmpty()) {
+                        if (list.isEmpty()) {
                             out.println("<h3>No item in this category</h3>");
                         }
                     %>
@@ -389,11 +410,9 @@
             <%--                        }--%>
 
 
-
             <%--                    %>--%>
 
             <%--                </div>--%>
-
 
 
         </div>
@@ -416,7 +435,8 @@
                 <div class="row g-sm-4 g-2">
                     <div class="col-lg-6">
                         <div class="slider-image">
-                            <img src="${BASE_URL}assets/images/product/category/1.jpg" class="img-fluid blur-up lazyload"
+                            <img src="${BASE_URL}assets/images/product/category/1.jpg"
+                                 class="img-fluid blur-up lazyload"
                                  alt="">
                         </div>
                     </div>
@@ -493,10 +513,12 @@
                             <div class="modal-button">
                                 <button onclick="location.href = 'cart.html';"
                                         class="btn btn-md add-cart-button icon">Add
-                                    To Cart</button>
+                                    To Cart
+                                </button>
                                 <button onclick="location.href = 'product-left.html';"
                                         class="btn theme-bg-color view-button icon text-white fw-bold btn-md">
-                                    View More Details</button>
+                                    View More Details
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -628,13 +650,16 @@
                         <li class="list-1">
                             <div class="deal-offer-contain">
                                 <a href="shop-left-sidebar.html" class="deal-image">
-                                    <img src="${BASE_URL}assets/images/vegetable/product/10.png" class="blur-up lazyload"
+                                    <img src="${BASE_URL}assets/images/vegetable/product/10.png"
+                                         class="blur-up lazyload"
                                          alt="">
                                 </a>
 
                                 <a href="shop-left-sidebar.html" class="deal-contain">
                                     <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <h6>$52.57
+                                        <del>57.62</del>
+                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -642,13 +667,16 @@
                         <li class="list-2">
                             <div class="deal-offer-contain">
                                 <a href="shop-left-sidebar.html" class="deal-image">
-                                    <img src="${BASE_URL}assets/images/vegetable/product/11.png" class="blur-up lazyload"
+                                    <img src="${BASE_URL}assets/images/vegetable/product/11.png"
+                                         class="blur-up lazyload"
                                          alt="">
                                 </a>
 
                                 <a href="shop-left-sidebar.html" class="deal-contain">
                                     <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <h6>$52.57
+                                        <del>57.62</del>
+                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -656,13 +684,16 @@
                         <li class="list-3">
                             <div class="deal-offer-contain">
                                 <a href="shop-left-sidebar.html" class="deal-image">
-                                    <img src="${BASE_URL}assets/images/vegetable/product/12.png" class="blur-up lazyload"
+                                    <img src="${BASE_URL}assets/images/vegetable/product/12.png"
+                                         class="blur-up lazyload"
                                          alt="">
                                 </a>
 
                                 <a href="shop-left-sidebar.html" class="deal-contain">
                                     <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <h6>$52.57
+                                        <del>57.62</del>
+                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -670,13 +701,16 @@
                         <li class="list-1">
                             <div class="deal-offer-contain">
                                 <a href="shop-left-sidebar.html" class="deal-image">
-                                    <img src="${BASE_URL}assets/images/vegetable/product/13.png" class="blur-up lazyload"
+                                    <img src="${BASE_URL}assets/images/vegetable/product/13.png"
+                                         class="blur-up lazyload"
                                          alt="">
                                 </a>
 
                                 <a href="shop-left-sidebar.html" class="deal-contain">
                                     <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <h6>$52.57
+                                        <del>57.62</del>
+                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -721,7 +755,9 @@
                              alt="">
                         <div class="content">
                             <h5>Creamy Chocolate Cake</h5>
-                            <h6>$32.96<del class="text-danger">$96.00</del><span>55% off</span></h6>
+                            <h6>$32.96
+                                <del class="text-danger">$96.00</del>
+                                <span>55% off</span></h6>
                         </div>
                     </div>
                     <div class="selection-section">
@@ -760,11 +796,7 @@
 <!-- Sticky Cart Box End -->
 
 
-
 <jsp:include page="../frontend/include/other-footer.jsp"/>
-
-
-
 
 
 <!-- Bg overlay Start -->

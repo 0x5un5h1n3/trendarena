@@ -49,7 +49,7 @@
     <div class="container-fluid-lg">
         <div class="row g-sm-5 g-3">
             <div class="col-xxl-9">
-                <div class="cart-table">
+                <div class="cart-table bg-white">
                     <div class="table-responsive-xl">
                         <table class="table">
                             <tbody>
@@ -348,7 +348,7 @@
             </div>
 
             <div class="col-xxl-3">
-                <div class="summery-box p-sticky">
+                <div class="summery-box p-sticky bg-white">
                     <div class="summery-header">
                         <h3>Cart Total</h3>
                     </div>

@@ -50,7 +50,7 @@ User user1=(User)session.getAttribute("userLogged");
     	 %>
     	 
     	 <li class="nav-item active">
-        <a class="nav-link" href="<%=user1.getUserType().toString().equals("admin")?"admin":"admin" %>"><%=user1.getName() %> </a>
+        <a class="nav-link" href="<%="admin" %>"><%=user1.getName() %> </a>
      </li>
      <li class="nav-item active">
         <a class="nav-link" href="${BASE_URL}logout">Logout</a>

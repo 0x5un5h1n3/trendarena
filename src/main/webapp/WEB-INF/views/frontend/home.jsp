@@ -5,6 +5,7 @@
 <%@ page import="com.ox5un5h1n3.web.trendarena.dao.CategoryDao" %>
 <%@ page import="com.ox5un5h1n3.web.trendarena.entity.Category" %>
 <%@ page import="com.ox5un5h1n3.web.trendarena.util.Helper" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
     String cat=request.getParameter("category");
 
     ProductDao dao = new ProductDao(HibernateUtil.getSessionFactory());
-    List<Product> list=null;
+    List<Product> list= null;
 
     if(cat==null ||cat.trim().equals("all")) {
         list =dao.getAllProducts();
@@ -154,9 +155,11 @@
 <%--                                            </li>--%>
 
                                             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">
-                                                <a onclick="add_to_cart(<%=p.getPid() %>,'<%=p.getpName() %>','<%=p.getDiscountedPrice() %>')">
+                                                <a link href="${BASE_URL}cart" onclick="add_to_cart(<%=p.getPid() %>,'<%=p.getpName() %>','<%=p.getDiscountedPrice() %>')">
                                                     <i data-feather="shopping-cart"></i>
                                                 </a>
+
+
                                             </li>
 
 
@@ -192,97 +195,6 @@
                         </div>
 
                     </div>
-
-<%--                <div class="title d-block">--%>
-<%--                    <h2 class="text-theme font-sm">Recently Added</h2>--%>
-<%--                    <p>Get your hands on the latest trendy pieces!</p>--%>
-<%--                </div>--%>
-
-<%--                <div--%>
-<%--                        class="row row-cols-xxl-6 row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2 g-sm-4 g-3 section-b-space">--%>
-
-<%--                    <%--%>
-
-<%--                        for(Product p:list)--%>
-<%--                        {--%>
-<%--                    %>--%>
-<%--                    <div>--%>
-<%--                        <div class="product-box product-white-bg wow fadeIn">--%>
-<%--                            <div class="product-image">--%>
-<%--                                <a href="product-left-thumbnail.html">--%>
-<%--                                    <img src="${BASE_URL}img/products/<%= p.getpPhoto()%>"--%>
-<%--                                         class="img-fluid blur-up lazyload" alt="">--%>
-<%--                                </a>--%>
-<%--                                <ul class="product-option">--%>
-<%--                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">--%>
-<%--                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">--%>
-<%--                                            <i data-feather="eye"></i>--%>
-<%--                                        </a>--%>
-<%--                                    </li>--%>
-
-<%--                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">--%>
-<%--                                        <a href="compare.html">--%>
-<%--                                            <i data-feather="refresh-cw"></i>--%>
-<%--                                        </a>--%>
-<%--                                    </li>--%>
-
-<%--                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">--%>
-<%--                                        <a href="wishlist.html" class="notifi-wishlist">--%>
-<%--                                            <i data-feather="heart"></i>--%>
-<%--                                        </a>--%>
-<%--                                    </li>--%>
-<%--                                </ul>--%>
-<%--                            </div>--%>
-<%--                            <div class="product-detail position-relative">--%>
-<%--                                <a href="product-left-thumbnail.html">--%>
-<%--                                    <h6 class="name">--%>
-<%--                                        <%=p.getpName() %>--%>
-<%--                                    </h6>--%>
-<%--                                </a>--%>
-
-<%--                                <h6 class="sold weight text-content fw-normal"><%=Helper.get10Words(p.getpDesc()) %></h6>--%>
-
-<%--                                <h6 class="price theme-color">$ <%=p.getPriceAfterApplyDiscount() %></h6>--%>
-
-<%--                                <div class="add-to-cart-btn-2 addtocart_btn">--%>
-<%--                                    <button class="btn addcart-button btn buy-button"><i--%>
-<%--                                            class="fa-solid fa-plus"></i></button>--%>
-<%--                                    <div class="cart_qty qty-box-2 qty-box-3">--%>
-<%--                                        <div class="input-group">--%>
-<%--                                            <button type="button" class="qty-left-minus" data-type="minus"--%>
-<%--                                                    data-field="">--%>
-<%--                                                <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                            </button>--%>
-<%--                                            <input class="form-control input-number qty-input" type="text"--%>
-<%--                                                   name="quantity" value="0">--%>
-<%--                                            <button type="button" class="qty-right-plus" data-type="plus"--%>
-<%--                                                    data-field="">--%>
-<%--                                                <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                            </button>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-
-
-<%--                    <%--%>
-<%--                        }--%>
-
-
-<%--                        if(list.size()==0)--%>
-<%--                        {--%>
-<%--                            out.println("<h3>No item in this category</h3>");--%>
-<%--                        }--%>
-
-
-
-            <%--                    %>--%>
-
-            <%--                </div>--%>
-
-
 
             </div>
         </div>
@@ -364,27 +276,6 @@
     </div>
 </div>
 <!-- Quick View Modal Box End -->
-
-
-<!-- Cookie Bar Box Start -->
-<%--<div class="cookie-bar-box">--%>
-<%--  <div class="cookie-box">--%>
-<%--    <div class="cookie-image">--%>
-<%--      <img src="${BASE_URL}assets/images/cookie-bar.png" class="blur-up lazyload" alt="">--%>
-<%--      <h2>Cookies!</h2>--%>
-<%--    </div>--%>
-
-<%--    <div class="cookie-contain">--%>
-<%--      <h5 class="text-content">We use cookies to make your experience better</h5>--%>
-<%--    </div>--%>
-<%--  </div>--%>
-
-<%--  <div class="button-group">--%>
-<%--    <button class="btn privacy-button">Privacy Policy</button>--%>
-<%--    <button class="btn ok-button">OK</button>--%>
-<%--  </div>--%>
-<%--</div>--%>
-<!-- Cookie Bar Box End -->
 
 
 <!-- Tap to top start -->
@@ -481,7 +372,7 @@
         let cart = JSON.parse(cartString);
         if (cart == null || cart.length == 0) {
             console.log("Cart is empty");
-            alert("Cart is empty");
+            // alert("Cart is empty");
             $(".cart-items").text("0");
             $(".cart-body").html("<h3>Cart does not have any items </h3>");
             $(".checkout-btn").attr("disabled", true);
@@ -542,10 +433,23 @@
     });
 
     function gotoCheckout() {
-        window.location = "checkout.jsp";
+        window.location = "checkout";
     }
 
 
+    function productSearch() {
+
+        let product_title = document.getElementById('product_search').value;
+
+        fetch('products/search_product?title=' + product_title, {
+            method: "POST",
+        })
+            .then(response => response.text())
+            .then((data) => {
+                let product_view_table = document.getElementById("product_view_table");
+                product_view_table.innerHTML = data;
+            });
+    }
 
 </script>
 

@@ -61,25 +61,6 @@
             <!-- Container-fluid start-->
             <div class="container-fluid">
                 <div class="row">
-                    <!-- chart caard section start -->
-<%--                    <div class="col-sm-6 col-xxl-3 col-lg-6">--%>
-<%--                        <div class="main-tiles border-5 border-0  card-hover card o-hidden">--%>
-<%--                            <div class="custome-1-bg b-r-4 card-body">--%>
-<%--                                <div class="media align-items-center static-top-widget">--%>
-<%--                                    <div class="media-body p-0">--%>
-<%--                                        <span class="m-0">Total Revenue</span>--%>
-<%--                                        <h4 class="mb-0 counter">$6659--%>
-<%--                                            <span class="badge badge-light-primary grow">--%>
-<%--                                                    <i data-feather="trending-up"></i>8.5%</span>--%>
-<%--                                        </h4>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="align-self-center text-center">--%>
-<%--                                        <i class="ri-database-2-line"></i>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
 
                     <div class="col-sm-6 col-xxl-3 col-lg-6">
                         <div class="main-tiles border-5 card-hover border-0 card o-hidden">
@@ -140,6 +121,25 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-sm-6 col-xxl-3 col-lg-6">
+                    <div class="main-tiles border-5 card-hover border-0 card o-hidden">
+                        <div class="custome-4-bg b-r-4 card-body">
+                            <div class="media static-top-widget">
+                                <div class="media-body p-0">
+                                    <span class="m-0">Total Admins</span>
+                                    <h4 class="mb-0 counter"><%=m.get("adminCount") %>
+                                    </h4>
+                                </div>
+
+                                <div class="align-self-center text-center">
+                                    <i class="ri-user-add-line"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <!-- Container-fluid Ends-->
 </div>
@@ -198,12 +198,6 @@
 <%--<script src="${BASE_URL}assets/admin/js/notify/bootstrap-notify.min.js"></script>--%>
 <script src="${BASE_URL}assets/admin/js/notify/index.js"></script>
 
-<!-- Apexchar js -->
-<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/apex-chart1.js"></script>--%>
-<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/moment.min.js"></script>--%>
-<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/apex-chart.js"></script>--%>
-<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/stock-prices.js"></script>--%>
-<%--<script src="${BASE_URL}assets/admin/js/chart/apex-chart/chart-custom1.js"></script>--%>
 
 
 <!-- slick slider js -->

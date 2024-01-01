@@ -45,19 +45,19 @@
                     </div>
                     <ul class="footer-list footer-contact footer-list-light">
                         <li>
-                            <a href="about-us.html" class="light-text">About Us</a>
+                            <a href="${BASE_URL}about-us" class="light-text">About Us</a>
                         </li>
                         <li>
-                            <a href="contact-us.html" class="light-text">Contact Us</a>
+                            <a href="${BASE_URL}contact-us" class="light-text">Contact Us</a>
                         </li>
                         <li>
-                            <a href="term_condition.html" class="light-text">Terms & Coditions</a>
+                            <a href="${BASE_URL}term_condition" class="light-text">Terms & Coditions</a>
                         </li>
                         <li>
-                            <a href="careers.html" class="light-text">Careers</a>
+                            <a href="${BASE_URL}careers" class="light-text">Careers</a>
                         </li>
                         <li>
-                            <a href="blog-list.html" class="light-text">Latest Blog</a>
+                            <a href="${BASE_URL}blog-list" class="light-text">Latest Blog</a>
                         </li>
                     </ul>
                 </div>
@@ -68,19 +68,19 @@
                     </div>
                     <ul class="footer-list footer-list-light footer-contact">
                         <li>
-                            <a href="order-success.html" class="light-text">Your Order</a>
+                            <a href="${BASE_URL}" class="light-text">Your Order</a>
                         </li>
                         <li>
-                            <a href="user-dashboard.html" class="light-text">Your Account</a>
+                            <a href="${BASE_URL}" class="light-text">Your Account</a>
                         </li>
                         <li>
-                            <a href="order-tracking.html" class="light-text">Track Orders</a>
+                            <a href="${BASE_URL}" class="light-text">Track Orders</a>
                         </li>
                         <li>
-                            <a href="wishlist.html" class="light-text">Your Wishlist</a>
+                            <a href="${BASE_URL}" class="light-text">Your Wishlist</a>
                         </li>
                         <li>
-                            <a href="faq.html" class="light-text">FAQs</a>
+                            <a href="${BASE_URL}" class="light-text">FAQs</a>
                         </li>
                     </ul>
                 </div>
@@ -91,19 +91,19 @@
                     </div>
                     <ul class="footer-list footer-list-light footer-contact">
                         <li>
-                            <a href="vegetables-demo.html" class="light-text">Fresh Vegetables</a>
+                            <a href="${BASE_URL}" class="light-text">T-Shirts</a>
                         </li>
                         <li>
-                            <a href="spice-demo.html" class="light-text">Hot Spice</a>
+                            <a href="${BASE_URL}" class="light-text">Jerseys</a>
                         </li>
                         <li>
-                            <a href="bags-demo.html" class="light-text">Brand New Bags</a>
+                            <a href="${BASE_URL}" class="light-text">Jeans</a>
                         </li>
                         <li>
-                            <a href="bakery-demo.html" class="light-text">New Bakery</a>
+                            <a href="${BASE_URL}" class="light-text">Pants</a>
                         </li>
                         <li>
-                            <a href="grocery-demo.html" class="light-text">New Grocery</a>
+                            <a href="${BASE_URL}" class="light-text">Jewelleries</a>
                         </li>
                     </ul>
                 </div>
@@ -158,23 +158,6 @@
                 <p>&copy;TrendArena. All rights reserved.</p>
             </div>
 
-<%--            <ul class="payment-box">--%>
-<%--                <li>--%>
-<%--                    <img src="${BASE_URL}assets/images/icon/paymant/visa.png" class="blur-up lazyload" alt="">--%>
-<%--                </li>--%>
-<%--                <li>--%>
-<%--                    <img src="${BASE_URL}assets/images/icon/paymant/discover.png" alt="" class="blur-up lazyload">--%>
-<%--                </li>--%>
-<%--                <li>--%>
-<%--                    <img src="${BASE_URL}assets/images/icon/paymant/american.png" alt="" class="blur-up lazyload">--%>
-<%--                </li>--%>
-<%--                <li>--%>
-<%--                    <img src="${BASE_URL}assets/images/icon/paymant/master-card.png" alt="" class="blur-up lazyload">--%>
-<%--                </li>--%>
-<%--                <li>--%>
-<%--                    <img src="${BASE_URL}assets/images/icon/paymant/giro-pay.png" alt="" class="blur-up lazyload">--%>
-<%--                </li>--%>
-<%--            </ul>--%>
         </div>
     </div>
 </footer>

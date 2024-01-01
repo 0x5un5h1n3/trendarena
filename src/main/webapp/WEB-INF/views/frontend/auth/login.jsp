@@ -54,31 +54,6 @@
                                 </form>
                             </div>
 
-<%--                            <div class="other-log-in">--%>
-<%--                                <h6>or</h6>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="log-in-button">--%>
-<%--                                <ul>--%>
-<%--                                    <li>--%>
-<%--                                        <a href="https://www.google.com/" class="btn google-button w-100">--%>
-<%--                                            <img src="${BASE_URL}assets/images/inner-page/google.png" class="blur-up lazyload"--%>
-<%--                                                 alt=""> Log In with Google--%>
-<%--                                        </a>--%>
-<%--                                    </li>--%>
-<%--                                    <li>--%>
-<%--                                        <a href="https://www.facebook.com/" class="btn google-button w-100">--%>
-<%--                                            <img src="${BASE_URL}assets/images/inner-page/facebook.png" class="blur-up lazyload"--%>
-<%--                                                 alt=""> Log In with Facebook--%>
-<%--                                        </a>--%>
-<%--                                    </li>--%>
-<%--                                </ul>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="other-log-in">--%>
-<%--                                <h6></h6>--%>
-<%--                            </div>--%>
-
                             <div class="sign-up-box">
                                 <h4>Don't have an account?</h4>
                                 <a href="${BASE_URL}register">Sign Up</a>

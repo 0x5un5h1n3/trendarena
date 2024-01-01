@@ -35,15 +35,19 @@ public class Helper {
 		Session session = factory.openSession();
 		String q1="Select count(*) from User u where u.userType = 'USER'";
 		String q2="Select count(*) from Product";
-		
+		String q3="Select count(*) from User u where u.userType = 'ADMIN'";
+
 		Query query1 = session.createQuery(q1);
 		Query query2 = session.createQuery(q2);
-		
+		Query query3 = session.createQuery(q3);
+
 		Long userCount = (Long) query1.list().get(0);
 		Long productCount = (Long)query2.list().get(0);
-		
+		Long adminCount = (Long) query3.list().get(0);
+
 		Map<String, Long> map=new HashMap<String, Long>();
 		map.put("userCount", userCount);
+		map.put("adminCount", adminCount);
 		map.put("productCount", productCount);
 		
 		
@@ -53,3 +57,4 @@ public class Helper {
 		return map;
 	}
 }
+

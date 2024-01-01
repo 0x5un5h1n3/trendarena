@@ -81,7 +81,7 @@
                             <div class="search-box">
                                 <div class="input-group">
                                     <input type="search" class="form-control" placeholder="I'm searching for..."
-                                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                                           aria-label="Recipient's username" aria-describedby="button-addon2" id="product_search" onkeyup="productSearch();">
                                     <button class="btn bg-theme" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
                                     </button>
@@ -138,13 +138,22 @@
                                         <%--                                        </button>--%>
                                         <%--                                        </a>--%>
 
-                                        <button type="button" class="btn p-0 position-relative header-wishlist"
-                                                data-bs-toggle="modal" data-bs-target="#cart">
+<%--                                        <button type="button" class="btn p-0 position-relative header-wishlist"--%>
+<%--                                                data-bs-toggle="modal" data-bs-target="#cart">--%>
+<%--                                            <i data-feather="shopping-cart"></i>--%>
+<%--                                            <span class="position-absolute top-0 start-100 translate-middle badge cart-items">0--%>
+<%--        <span class="visually-hidden">unread messages</span>--%>
+<%--    </span>--%>
+<%--                                        </button>--%>
+
+                                            <a href="${BASE_URL}cart"><button type="button" class="btn p-0 position-relative header-wishlist"
+                                                                                  >
                                             <i data-feather="shopping-cart"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge cart-items">0
         <span class="visually-hidden">unread messages</span>
     </span>
                                         </button>
+                                            </a>
 
                                         <%--                                        <div class="onhover-div">--%>
                                         <%--                                            <ul class="cart-list">--%>

@@ -38,13 +38,14 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-<!--    <servlet>-->
-<!--        <servlet-name>ProductOperationServlet</servlet-name>-->
-<!--        <servlet-class>com.ox5un5h1n3.web.trendarena.servlets.ProductOperationServlet</servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>ProductOperationServlet</servlet-name>-->
-<!--        <url-pattern>/ProductOperationServlet</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/frontend/404.jsp</location>
+    </error-page>
+
+
+
+
+
 
 </web-app>

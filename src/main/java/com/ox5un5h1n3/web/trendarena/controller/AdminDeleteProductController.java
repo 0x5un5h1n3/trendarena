@@ -48,6 +48,5 @@ public class AdminDeleteProductController {
                 }
 
 
-//        return new Viewable("/frontend/products");
             }
         }

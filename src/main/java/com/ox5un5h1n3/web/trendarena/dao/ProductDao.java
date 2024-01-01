@@ -4,6 +4,8 @@ package com.ox5un5h1n3.web.trendarena.dao;
 import java.util.List;
 
 import com.ox5un5h1n3.web.trendarena.entity.Product;
+import com.ox5un5h1n3.web.trendarena.util.HibernateUtil;
+import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -125,7 +127,18 @@ public class ProductDao {
     }
 
 
-
+    public List<Product> searchByTitle(String title) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            List<Product> products = session.createQuery("SELECT p FROM Product p WHERE p.pName LIKE :product",Product.class)
+                    .setParameter("product", "%"+title+"%").getResultList();
+            return products;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
 
 
 

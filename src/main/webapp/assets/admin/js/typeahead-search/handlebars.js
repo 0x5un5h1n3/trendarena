@@ -3136,7 +3136,7 @@ var Handlebars = (function () {
           depth = result.depths.list[i];
 
           if (depth < 2) {
-            continue;
+
           } else {
             this.addDepth(depth - 1);
           }

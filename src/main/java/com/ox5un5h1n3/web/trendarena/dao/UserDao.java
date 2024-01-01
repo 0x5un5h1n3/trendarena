@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDao {
 
-    private SessionFactory factory;
+    private final SessionFactory factory;
 
     public UserDao(SessionFactory factory) {
         this.factory = factory;
@@ -51,7 +51,7 @@ public class UserDao {
     }
 
     public List<User> getAllUser() {
-        try (Session session = this.factory.openSession();) {
+        try (Session session = this.factory.openSession()) {
             Transaction transaction = session.beginTransaction();
             Query query = session.createQuery("FROM User");
             List<User> users = query.list();

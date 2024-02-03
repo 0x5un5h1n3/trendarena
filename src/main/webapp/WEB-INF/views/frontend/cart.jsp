@@ -7,8 +7,7 @@
 <%@ page import="com.ox5un5h1n3.web.trendarena.util.Helper" %>
 <%@ page import="com.ox5un5h1n3.web.trendarena.entity.User" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.google.gson.reflect.TypeToken" %>
-<%@ page import="com.google.gson.Gson" %>
+<%@ page import="com.ox5un5h1n3.web.trendarena.entity.Cart" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +29,7 @@
 
     CategoryDao cdao = new CategoryDao(HibernateUtil.getSessionFactory());
     List<Category> clist = cdao.getCategories();
+
 %>
 
 
@@ -48,67 +48,53 @@
                     <div class="table-responsive-xl">
                         <table class="table">
                             <tbody>
-                            <tr class="product-box-contain">
-                                <%
-                                    // Retrieve the cart items from localStorage
-                                    String cartJson = request.getParameter("cart");
-                                    if (cartJson != null) {
-                                        List<Product> cartItems = new Gson().fromJson(cartJson, new TypeToken<List<Product>>() {}.getType());
-                                        for (Product cartItem : cartItems) {
-                                %>
-                                <td class="product-detail">
-                                    <div class="product border-0">
-                                        <a href="product-left-thumbnail.html" class="product-image">
-                                            <img src="${BASE_URL}assets/images/vegetable/product/1.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                        </a>
-                                        <div class="product-detail">
-                                            <ul>
-                                                <li class="name">
-                                                    <a href="product-left-thumbnail.html"><%= cartItem.getpName() %></a>
-                                                </li>
+                            <c:forEach items="${cartItems}" var="cartItem">
+                                <tr class="product-box-contain">
+                                    <td class="product-detail">
+                                        <div class="product border-0">
+                                            <a href="product-left-thumbnail.html" class="product-image">
+                                                <img src="${BASE_URL}assets/images/vegetable/product/1.png"
+                                                     class="img-fluid blur-up lazyload" alt="">
+                                            </a>
+                                            <div class="product-detail">
+                                                <ul>
+                                                    <li class="name">
+                                                        <a href="product-left-thumbnail.html">${cartItem.productName}</a>
+                                                    </li>
 
-                                                <li>
-                                                    <h5 class="text-content d-inline-block">Price :</h5>
-                                                    <span>$%= cartItem.getProductPrice() %></span>
-                                                    <span class="text-content">$<%= cartItem.getDiscountedPrice() %></span>
-                                                </li>
+                                                    <li>
+                                                        <h5 class="text-content d-inline-block">Price :</h5>
+                                                        <span>${cartItem.productPrice}</span>
+                                                        <span class="text-content">${cartItem.discountedPrice}</span>
+                                                    </li>
 
-                                                <li>
-                                                    <h5 class="saving theme-color">Saving : $%= cartItem.getSaving() %></h5>
-                                                </li>
+                                                    <li>
+                                                        <h5 class="saving theme-color">Saving : 0</h5>
+                                                    </li>
 
-                                                <li class="quantity-price-box">
-                                                    <div class="cart_qty">
-                                                        <div class="input-group">
-                                                            <button type="button" class="btn qty-left-minus"
-                                                                    data-type="minus" data-field="">
-                                                                <i class="fa fa-minus ms-0"
-                                                                   aria-hidden="true"></i>
-                                                            </button>
-                                                            <input class="form-control input-number qty-input"
-                                                                   type="text" name="quantity" value="0">
-                                                            <button type="button" class="btn qty-right-plus"
-                                                                    data-type="plus" data-field="">
-                                                                <i class="fa fa-plus ms-0"
-                                                                   aria-hidden="true"></i>
-                                                            </button>
+                                                    <li class="quantity-price-box">
+                                                        <div class="cart_qty">
+                                                            <div class="input-group">
+                                                                <button type="button" class="btn qty-left-minus" data-type="minus" data-field="">
+                                                                    <i class="fa fa-minus ms-0" aria-hidden="true"></i>
+                                                                </button>
+                                                                <input class="form-control input-number qty-input" type="text" name="quantity" value="0">
+                                                                <button type="button" class="btn qty-right-plus" data-type="plus" data-field="">
+                                                                    <i class="fa fa-plus ms-0" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
+                                                    </li>
 
-                                                <li>
-                                                    <h5>Total: $%= cartItem.getTotalPrice() %></h5>
-                                                </li>
-                                            </ul>
+                                                    <li>
+                                                        <h5>Total: ${cartItem.totalPrice}</h5>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <%
-                                        }
-                                    }
-                                %>
-                            </tr>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>

@@ -2,6 +2,8 @@ package com.ox5un5h1n3.web.trendarena.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public class User extends BaseEntity {
@@ -24,6 +26,10 @@ public class User extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "user_type")
     private UserType userType = UserType.USER;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItems;
+
 
     public User() {
 
@@ -138,5 +144,13 @@ public class User extends BaseEntity {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 }

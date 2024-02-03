@@ -6,25 +6,31 @@
 <%@ page import="com.ox5un5h1n3.web.trendarena.entity.Category" %>
 <%@ page import="com.ox5un5h1n3.web.trendarena.util.Helper" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.ox5un5h1n3.web.trendarena.entity.Cart" %>
+<%@ page import="com.ox5un5h1n3.web.trendarena.entity.User" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <%
-    String cat=request.getParameter("category");
-
+    String cat = request.getParameter("category");
     ProductDao dao = new ProductDao(HibernateUtil.getSessionFactory());
-    List<Product> list= null;
-
-    if(cat==null ||cat.trim().equals("all")) {
-        list =dao.getAllProducts();
-    }
-    else{
-        int cid=Integer.parseInt(cat.trim());
-        list=dao.getAllProductsById(cid);
+    List<Product> list = null;
+    if (cat == null || cat.trim().equals("all")) {
+        list = dao.getAllProducts();
+    } else {
+        int cid = Integer.parseInt(cat.trim());
+        list = dao.getAllProductsById(cid);
     }
 
     CategoryDao cdao = new CategoryDao(HibernateUtil.getSessionFactory());
     List<Category> clist = cdao.getCategories();
+
+    Cart cart = (Cart) session.getAttribute("cart");
+    if (cart == null) {
+        cart = new Cart();
+        session.setAttribute("cart", cart);
+    }
+    User user = (User) session.getAttribute("user");
 %>
 
 <jsp:include page="../frontend/include/header.jsp"/>
@@ -155,7 +161,8 @@
 <%--                                            </li>--%>
 
                                             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart">
-                                                <a link href="${BASE_URL}cart" onclick="add_to_cart(<%=p.getPid() %>,'<%=p.getpName() %>','<%=p.getDiscountedPrice() %>')">
+                                                <a link href="${BASE_URL}cart/<%=p.getPid() %>")>
+<%--                                                <a link href="${BASE_URL}cart" onclick="add_to_cart(<%=p.getPid() %>,'<%=p.getpName() %>','<%=p.getDiscountedPrice() %>')">--%>
                                                     <i data-feather="shopping-cart"></i>
                                                 </a>
 
@@ -319,135 +326,108 @@
 
 <script>
 
-    function add_to_cart(pid, pname, price) {
-
-        let cart = localStorage.getItem("cart");
-        if (cart == null) {
-            // no cart yet
-            let products = [];
-            let product = {
-                productId: pid,
-                productName: pname,
-                productQuantity: 1,
-                productPrice: price
-            };
-            products.push(product);
-            localStorage.setItem("cart", JSON.stringify(products));
-            alert("Product is added for the first time");
-            console.log("Product is added for the first time");
-        } else {
-            // Already available
-            let pcart = JSON.parse(cart);
-
-            let oldProduct = pcart.find((item) => item.productId === pid);
-            console.log(oldProduct);
-            if (oldProduct) {
-                // Increase the quantity
-                oldProduct.productQuantity = oldProduct.productQuantity + 1;
-                pcart.map((item) => {
-                    if (item.productId == oldProduct.productId) {
-                        item.productQuantity = oldProduct.productQuantity;
-                    }
-                });
-                localStorage.setItem("cart", JSON.stringify(pcart));
-            } else {
-                // Add product to cart
-                let product = {
-                    productId: pid,
-                    productName: pname,
-                    productQuantity: 1,
-                    productPrice: price
-                };
-                pcart.push(product);
-                localStorage.setItem("cart", JSON.stringify(pcart));
-                console.log("Product id added");
-                alert("Product id added");
-            }
-        }
-        updateCart();
+    function addToCart(productId, productName, productPrice) {
+        let product = { productId: productId, productName: productName, productPrice: productPrice };
+        let request = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(product) };
+        fetch('/cart', request)
+            .then(response => {
+                if (response.ok) {
+                    console.log('Cart item added successfully');
+                    updateCart();
+                } else {
+                    console.log('Failed to add cart item');
+                }
+            });
     }
 
     function updateCart() {
-        let cartString = localStorage.getItem("cart");
-        let cart = JSON.parse(cartString);
-        if (cart == null || cart.length == 0) {
-            console.log("Cart is empty");
-            // alert("Cart is empty");
-            $(".cart-items").text("0");
-            $(".cart-body").html("<h3>Cart does not have any items </h3>");
-            $(".checkout-btn").attr("disabled", true);
-        } else {
-            // there is something
-            console.log(cart);
-            $(".cart-items").text(`( ${cart.length} )`);
-            let table = `
-      <table class='table'>
-        <thead class='thead-light'>
-          <tr>
-            <th>Item Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-      `;
-
-            let totalPrice = 0;
-
-            cart.map((item) => {
-                table += `
-        <tr>
-          <td>${item.productName}</td>
-          <td>${item.productPrice}</td>
-          <td>${item.productQuantity}</td>
-          <td>${item.productQuantity * item.productPrice}</td>
-          <td><button onclick="deleteItemFromCart(${item.productId})" class="btn btn-danger btn-sm">Remove</button></td>
-        </tr>
-      `;
-                totalPrice += item.productPrice * item.productQuantity;
+        fetch('/cart')
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.log('Failed to update cart');
+                }
+            })
+            .then(cartItems => {
+                displayCartItems(cartItems);
             });
-
-            table = table + `
-      <tr>
-        <td colspan='5' class='text-right font-weight-bold m-5'> Total Price: ${totalPrice}</td>
-      </tr>
-    </table>`;
-
-            $(".cart-body").html(table);
-            $(".checkout-btn").attr("disabled", false);
-            console.log("updated");
-        }
     }
 
-    function deleteItemFromCart(pid) {
-        let cart = JSON.parse(localStorage.getItem("cart"));
-        let newcart = cart.filter((item) => item.productId != pid);
-
-        localStorage.setItem("cart", JSON.stringify(newcart));
-        updateCart();
+    function displayCartItems(cartItems) {
+        let cartTable = document.querySelector('.cart-table tbody');
+        cartTable.innerHTML = '';
+        cartItems.forEach(cartItem => {
+            let tr = document.createElement('tr');
+            tr.innerHTML = `
+      <td class="product-detail">
+        <div class="product border-0">
+          <a href="product-left-thumbnail.html" class="product-image">
+            <img src="${BASE_URL}assets/images/vegetable/product/1.png" class="img-fluid blur-up lazyload" alt="">
+          </a>
+          <div class="product-detail">
+            <ul>
+              <li class="name">
+                <a href="product-left-thumbnail.html">${cartItem.productName}</a>
+              </li>
+              <li>
+                <h5 class="text-content d-inline-block">Price :</h5>
+                <span>${cartItem.productPrice}</span>
+                <span class="text-content">${cartItem.discountedPrice}</span>
+              </li>
+              <li>
+                <h5 class="saving theme-color">Saving : 0</h5>
+              </li>
+              <li class="quantity-price-box">
+                <div class="cart_qty">
+                  <div class="input-group">
+                    <button type="button" class="btn qty-left-minus" data-type="minus" data-field="">
+                      <i class="fa fa-minus ms-0" aria-hidden="true"></i>
+                    </button>
+                    <input class="form-control input-number qty-input" type="text" name="quantity" value="${cartItem.quantity}">
+                    <button type="button" class="btn qty-right-plus" data-type="plus" data-field="">
+                      <i class="fa fa-plus ms-0" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <h5>Total: ${cartItem.totalPrice}</h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    `;
+            cartTable.appendChild(tr);
+        });
     }
 
-    $(document).ready(function () {
-        updateCart();
-    });
+    function removeFromCart(productId) {
+        fetch(`/cart/remove/${productId}`, { method: 'DELETE' })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Item removed successfully');
+                    updateCart();
+                } else {
+                    console.log('Failed to remove item');
+                }
+            });
+    }
 
     function gotoCheckout() {
-        window.location = "checkout";
+        window.location.href = 'checkout.html';
     }
 
+    // Call updateCart when the page loads
+    updateCart();
+    updateCartItemCount();
 
-    function productSearch() {
-
-        let product_title = document.getElementById('product_search').value;
-
-        fetch('products/search_product?title=' + product_title, {
-            method: "POST",
-        })
-            .then(response => response.text())
-            .then((data) => {
-                let product_view_table = document.getElementById("product_view_table");
-                product_view_table.innerHTML = data;
+    function updateCartItemCount() {
+        fetch('/cart/item-count')
+            .then(response => response.json())
+            .then(cartItemCount => {
+                document.getElementById('cart-item-count').innerHTML = cartItemCount;
             });
     }
 

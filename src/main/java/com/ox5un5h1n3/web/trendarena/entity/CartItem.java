@@ -6,9 +6,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "CartItem")
-
 public class CartItem {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +23,11 @@ public class CartItem {
 
     @Column(name = "discounted_price")
     private BigDecimal discountedPrice;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
+
 
     public Long getId() {
         return id;
@@ -64,5 +67,13 @@ public class CartItem {
 
     public void setDiscountedPrice(BigDecimal discountedPrice) {
         this.discountedPrice = discountedPrice;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
